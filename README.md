@@ -9,7 +9,7 @@ I'm a mobile developer who loves to create amazing apps for different platforms.
 - Cross-platform development with **Jetpack Compose**, **KMM**, **React Native**, and **Flutter**
 - Version control with **Git** and **GitHub**
 - Testing and debugging with **Espresso**, **XCTest**, and **Flutter Test**
-- UI design with **Figma**, **Adobe XD**, **Illustrator** **Photoshop** 
+- UI design with **Figma**, **Adobe XD**, **Illustrator** and **Photoshop** 
 
 ## 💬 Ask me about ...
 
