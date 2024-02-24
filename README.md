@@ -24,9 +24,9 @@ I'm a mobile developer who loves to create amazing apps for different platforms.
 
  ## 📊 My GitHub stats ...
 
-[![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical)]
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical)
 
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)]
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)
 
 You can find more about me [Here](https://drive.google.com/file/d/1Usn385V0UXrMh7QZtKR_5ZGai0xE9hBJ/view)
 
