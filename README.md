@@ -47,8 +47,6 @@
 
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)
 
-You can find more about me [Here](https://drive.google.com/file/d/1Usn385V0UXrMh7QZtKR_5ZGai0xE9hBJ/view)
-
 <!--
 
 <p align="left">
@@ -59,3 +57,5 @@ You can find more about me [Here](https://drive.google.com/file/d/1Usn385V0UXrMh
 
 ![GitHub stats](https://github-readme-stats.vercel.app/api?username=OmAr-Kader&show_icons=true&theme=radical)
 -->
+
+You can find more about me [Here](https://drive.google.com/file/d/1Usn385V0UXrMh7QZtKR_5ZGai0xE9hBJ/view)
