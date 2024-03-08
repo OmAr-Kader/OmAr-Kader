@@ -28,8 +28,8 @@
  <a href="https://developer.apple.com/swift/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg" alt="swift" width="40" height="40"/> </a>
  <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/android/34A853" alt="android" width="40" height="40"/> </a>
  <a href="https://kotlinlang.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg" alt="kotlin" width="40" height="40"/> </a>
- <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noreferrer"> <img src="https://github.com/gilbarbara/logos/blob/main/logos/compose-multiplatform.svg" alt="compose-multiplatform" width="40" height="40"/> </a>
- <a href="https://lp.jetbrains.com/kmm-for-crossplatform-developers/" target="_blank" rel="noreferrer"> <img src="https://lp.jetbrains.com/static/2021/03/23/155113-0.15265793.png" alt="kmm" width="40" height="40"/> </a>
+ <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/gilbarbara/logos/52addcaa18dfecb4df77f3ee0753dca6b98187ad/logos/compose-multiplatform.svg" alt="compose-multiplatform" width="40" height="40"/> </a>
+ <a href="https://lp.jetbrains.com/kmm-for-crossplatform-developers/" target="_blank" rel="noreferrer"> <img src="https://github.com/OmAr-Kader/OmAr-Kader/assets/137582672/afebc757-f5cc-484f-864a-274a93853357" alt="kmm" width="40" height="46"/> </a> 
  <a href="https://flutter.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="40" height="40"/> </a>
  <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="40" height="40"/> </a>
  <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="vscode" width="40" height="40"/> </a>
