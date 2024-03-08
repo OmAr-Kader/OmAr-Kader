@@ -29,7 +29,7 @@
  <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/android/34A853" alt="android" width="40" height="40"/> </a>
  <a href="https://kotlinlang.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg" alt="kotlin" width="40" height="40"/> </a>
  <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/gilbarbara/logos/52addcaa18dfecb4df77f3ee0753dca6b98187ad/logos/compose-multiplatform.svg" alt="compose-multiplatform" width="40" height="40"/> </a>
- <a href="https://lp.jetbrains.com/kmm-for-crossplatform-developers/" target="_blank" rel="noreferrer"> <img src="https://github.com/OmAr-Kader/OmAr-Kader/assets/137582672/afebc757-f5cc-484f-864a-274a93853357" alt="kmm" width="40" height="46"/> </a> 
+ <a href="https://lp.jetbrains.com/kmm-for-crossplatform-developers/" target="_blank" rel="noreferrer"> <img src="https://github.com/OmAr-Kader/OmAr-Kader/assets/137582672/78f1890b-2231-4d4d-84c6-e367597b41fd" alt="kmm" width="40" height="46"/> </a>  
  <a href="https://flutter.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="40" height="40"/> </a>
  <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="40" height="40"/> </a>
  <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="vscode" width="40" height="40"/> </a>
@@ -38,7 +38,7 @@
  <a href="https://firebase.google.com/" target="_blank" rel="noreferrer">  <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a>
  <a href="https://realm.io/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/bestofjs/bestofjs-webui/8665e8c267a0215f3159df28b33c365198101df5/public/logos/realm.svg" alt="realm" width="40" height="40"/> </a>
  <a href="https://supabase.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="supabase" width="40" height="40"/> </a>
- <a href="https://docs.aws.amazon.com/s3/" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/183896132-54262f2e-6d98-41e3-8888-e40ab5a17326.png" alt="aws" width="40" height="40"/> </a>
+ <a href="https://docs.aws.amazon.com/s3/" target="_blank" rel="noreferrer"> <img src="https://github.com/OmAr-Kader/OmAr-Kader/assets/137582672/8b22dd6c-2f88-4451-af81-0d866f433898" alt="aws" width="40" height="40"/> </a>
  <a href="https://en.wikipedia.org/wiki/REST" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png" alt="supabase" width="40" height="40"/> </a>
  <a href="https://webrtc.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/webrtc/#333333" alt="webrtc" width="40" height="40"/> </a>
  <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/atlassian_jira/atlassian_jira-icon.svg" alt="jira" width="40" height="40"/> </a>
