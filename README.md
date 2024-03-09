@@ -6,7 +6,7 @@
 - iOS development with **SwiftUI** and **Xcode**
 - Android development with **Jetpack Compose**, **Kotlin**, **Java** and **Android Studio**
 - Cross-platform development with **KMM**, **CMP**, **React Native** and **Flutter**
-- Cloud Services with **Firebase**, **Realm**, **Supabase**, **REST API**, **WebRTC**, **Zegocloud** and several cloud storage platforms
+- Cloud Services with **Firebase**, **Realm**, **Supabase**, **REST API**, **WebRTC**, **Zegocloud** and several cloud storage
 - Version control with **Git** and **GitHub**
 - Agile development methodologies and project management tools with **JIRA**
 - Testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**
@@ -14,7 +14,7 @@
 
 ## 💬 Ask me about
 
-- Anything related to **iOS**, **Android**, **KMP**, **React Native**, or **Flutter** development
+- Anything related to **iOS**, **Android**, **KMM**, **CMP**, **React Native**, or **Flutter** development
 - My experience with different mobile frameworks and libraries
 - My favorite mobile design patterns and architectures
 - My tips and tricks for optimizing mobile app performance and user experience
