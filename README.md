@@ -6,7 +6,7 @@
 - iOS development with **SwiftUI** and **Xcode**
 - Android development with **Kotlin**, **Java**, and **Android Studio**
 - Cross-platform development with **Jetpack Compose**, **KMM**, **React Native**, and **Flutter**
-- Cloud servers with **Firebase**, **Realm**, **Supabase**, **REST API**, **WebRTC**, **Zegocloud**
+- Cloud Services with **Firebase**, **Realm**, **Supabase**, **REST API**, **WebRTC**, **Zegocloud**
 - Version control with **Git** and **GitHub**
 - Testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**
 - UI design with **Figma**, **Adobe XD**, **Illustrator** and **Photoshop** 
