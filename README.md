@@ -8,6 +8,7 @@
 - Cross-platform development with **Jetpack Compose**, **KMM**, **React Native**, and **Flutter**
 - Cloud Services with **Firebase**, **Realm**, **Supabase**, **REST API**, **WebRTC**, **Zegocloud**
 - Version control with **Git** and **GitHub**
+- Agile development methodologies and project management tools with **JIRA**
 - Testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**
 - UI design with **Figma**, **Adobe XD**, **Illustrator** and **Photoshop** 
 
