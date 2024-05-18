@@ -63,6 +63,8 @@
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)
 
 <!--
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=pie)
+
  https://simpleicons.org/
  https://www.vectorlogo.zone/
  https://github.com/marwin1991/profile-technology-icons/blob/main/README.md
