@@ -58,12 +58,11 @@
 
 ## 📊 My GitHub stats
 
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=pie)
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical)
 
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)
 
 <!--
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical)
 
  https://simpleicons.org/
  https://www.vectorlogo.zone/
