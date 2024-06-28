@@ -48,7 +48,6 @@
 ### Freelance and Professional Work
 - Available for freelance projects on **Upwork**, **Contra** and **Fiverr** with a profile showcasing diverse development skills.
 - Ability to work effectively in both independent and team environments
-- Commitment to writing clean, maintainable, and efficient code
 
 ## 💬 Ask me about
 
