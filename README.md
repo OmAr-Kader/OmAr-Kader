@@ -3,14 +3,52 @@
 
 ## 🚀 Skills and Tools
 
-- iOS development with **SwiftUI** and **Xcode**
-- Android development with **Jetpack Compose**, **Kotlin**, **Java** and **Android Studio**
-- Cross-platform development with **KMM**, **CMP**, **React Native** and **Flutter**
-- Cloud Services with **Firebase**, **Realm**, **Supabase**, **REST API**, **WebRTC**, **Zegocloud** and several cloud storage
-- Version control with **Git** and **GitHub**
-- Agile development methodologies and project management tools with **JIRA**
-- Testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**
-- UI design with **Figma**, **Adobe XD**, **Illustrator** and **Photoshop** 
+### Mobile Development
+#### Android Development:
+- Expert in **Kotlin** and **Java**
+- Proficient with **Jetpack Compose** for modern UI development
+- Experienced in using **Android Studio** for app development
+#### iOS Development:
+- Skilled in **SwiftUI** for building intuitive user interfaces
+- Proficient in using **Xcode** for **iOS** app development
+#### Cross-Platform Development:
+- Experienced with **React Native** and **Flutter** for building apps that run on both **Android and iOS**
+- Proficient in **Compose Multiplatform** and **Kotlin Multiplatform** for shared codebases
+
+### Backend and Cloud Services
+- Expertise in integrating **Firebase**, **Realm** and **Supabase** for backend services.
+- Proficient in working with **REST APIs**.
+- Familiar with real-time communication technologies like **WebRTC** and **Zegocloud**.
+
+### App Features
+- Implemented **user authentication** and **authorization**.
+- Integrated **push notifications** and **real-time updates**.
+- Designed and built **responsive UI** and **smooth animations**.
+- Implemented **offline capabilities** and **data synchronization**.
+- Developed applications using **Web3 Ethereum** for blockchain integration.
+- Integrated **Chart Swift API** for data visualization.
+- Implemented **map tracking** features for location-based services.
+- Developed **real-time chat** functionalities.
+- Built **e-commerce** and **e-learning** platforms with advanced features
+
+### Testing and Debugging
+- Experienced in testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**.
+
+### UI/UX Design
+- Skilled in designing user interfaces with **Figma** and **Adobe XD**.
+- Proficient in graphic design tools such as **Illustrator** and **Photoshop**.
+
+### Version Control and Project Management
+- Strong knowledge of **Git** and version control practices.
+- Proficient in **Agile development methodologies** and using tools like **JIRA** for project management.
+
+### Collaboration and Open Source
+- Active contributor to **open source projects** on GitHub.
+
+### Freelance and Professional Work
+- Available for freelance projects on **Upwork**, **Contra** and **Fiverr** with a profile showcasing diverse development skills.
+- Ability to work effectively in both independent and team environments
+- Commitment to writing clean, maintainable, and efficient code
 
 ## 💬 Ask me about
 
