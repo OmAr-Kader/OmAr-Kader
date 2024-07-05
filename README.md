@@ -18,7 +18,7 @@
 ### Backend and Cloud Services
 - Expertise in integrating **Firebase**, **Realm** and **Supabase** for backend services.
 - Proficient in working with **REST APIs**.
-- Familiar with real-time communication technologies like **WebRTC** and **Zegocloud**.
+- Familiar with real-time communication technologies like **WebRTC**, **XMPP** and **Zegocloud**.
 
 ### App Features
 - Implemented **user authentication** and **authorization**.
