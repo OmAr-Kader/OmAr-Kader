@@ -17,7 +17,7 @@
 
 ### Backend and Cloud Services
 - Expertise in working with **Firebase**, **Realm**, **Supabase** and **AWS Amplify** for backend services.
-- Proficient in integrating apps with **REST APIs** and **GraphQL**
+- Proficient in integrating apps with **REST API** and **GraphQL**
 - Familiar with real-time communication technologies like **WebRTC**, **XMPP** and **Zegocloud**.
 
 ### App Features
