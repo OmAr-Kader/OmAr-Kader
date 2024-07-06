@@ -16,8 +16,8 @@
 - Proficient in **Compose Multiplatform** and **Kotlin Multiplatform** for shared codebases
 
 ### Backend and Cloud Services
-- Expertise in integrating **Firebase**, **Realm** and **Supabase** for backend services.
-- Proficient in working with **REST APIs**.
+- Expertise in working with **Firebase**, **Realm**, **Supabase** and **AWS Amplify** for backend services.
+- Proficient in integrating apps with **REST APIs** and **GraphQL**
 - Familiar with real-time communication technologies like **WebRTC**, **XMPP** and **Zegocloud**.
 
 ### App Features
