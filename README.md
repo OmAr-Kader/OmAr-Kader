@@ -61,7 +61,7 @@
 - Email: omar.kader.dev@gmail.com
 <br/>
 <p align="left">
- <a href="https://developer.apple.com/xcode/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/xcode/#147EFB" alt="xcode" width="40" height="40"/> </a>
+ <a href="https://developer.apple.com/xcode/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/xcode/147EFB" alt="xcode" width="40" height="40"/> </a>
  <a href="https://developer.apple.com/ios" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/ios/9f9e9e" alt="ios" width="40" height="40"/> </a>
  <a href="https://developer.apple.com/swift/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg" alt="swift" width="40" height="40"/> </a>
  <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/android/34A853" alt="android" width="40" height="40"/> </a>
@@ -78,7 +78,7 @@
  <a href="https://supabase.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="supabase" width="40" height="40"/> </a>
  <a href="https://docs.aws.amazon.com/s3/" target="_blank" rel="noreferrer"> <img src="https://github.com/OmAr-Kader/OmAr-Kader/assets/137582672/8b22dd6c-2f88-4451-af81-0d866f433898" alt="aws" width="40" height="40"/> </a>
  <a href="https://en.wikipedia.org/wiki/REST" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png" alt="supabase" width="40" height="40"/> </a>
- <a href="https://webrtc.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/webrtc/#333333" alt="webrtc" width="40" height="40"/> </a>
+ <a href="https://webrtc.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/webrtc/333333" alt="webrtc" width="40" height="40"/> </a>
  <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/atlassian_jira/atlassian_jira-icon.svg" alt="jira" width="40" height="40"/> </a>
  <a href="https://www.scrum.org/" target="_blank" rel="noreferrer"> <img src="https://wac-cdn.atlassian.com/dam/jcr:9567a40e-6541-4905-bf08-dfe201aa80e7/illustrations-spot-Agile.svg?cdnVersion=1194" alt="scrum" width="40" height="40"/> </a>
  <a href="https://junit.org/junit5/" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/117533873-484d4480-afef-11eb-9fad-67c8605e3592.png" alt="JUnit" width="40" height="40"/> </a>
