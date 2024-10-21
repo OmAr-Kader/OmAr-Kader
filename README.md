@@ -30,6 +30,7 @@
 - Implemented **map tracking** features for location-based services.
 - Developed **real-time chat** functionalities.
 - Built **e-commerce** and **e-learning** platforms with advanced features
+- Integration with **Google APIs** (Maps, Drive, Sheets, Translation, Docs, Slides and others)
 
 ### Testing and Debugging
 - Experienced in testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**.
