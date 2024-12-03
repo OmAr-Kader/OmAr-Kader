@@ -119,5 +119,3 @@
 
 ![GitHub stats](https://github-readme-stats.vercel.app/api?username=OmAr-Kader&show_icons=true&theme=radical)
 -->
-
-You can find more about me [Here](https://drive.google.com/file/d/1Usn385V0UXrMh7QZtKR_5ZGai0xE9hBJ/view)
