@@ -98,7 +98,9 @@
 
 ![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=pie)
 
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader
+
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)](https://git.io/streak-stats)
 
 <!--
 
