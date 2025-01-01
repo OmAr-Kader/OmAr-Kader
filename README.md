@@ -31,6 +31,7 @@
 - Developed **real-time chat** functionalities.
 - Built **e-commerce** and **e-learning** platforms with advanced features
 - Integration with **Google APIs** (Maps, Drive, Sheets, Translation, Docs, Slides and others)
+- Bringing existing **iOS** apps to **visionOS**, **iPadOS**
 
 ### Testing and Debugging
 - Experienced in testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**.
