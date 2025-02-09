@@ -61,6 +61,15 @@
 ## 📫 How to reach me
 
 - Email: omar.kader.dev@gmail.com
+
+## 🤩 Support Me
+
+<a href="https://www.buymeacoffee.com/omar_kader">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" width="200" height="70" alt="Buy Me a Coffee">
+</a>
+
+##
+
 <br/>
 <p align="left">
  <a href="https://developer.apple.com/xcode/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/xcode/147EFB" alt="xcode" width="40" height="40"/> </a>
