@@ -58,10 +58,6 @@
 - My favorite mobile design patterns and architectures
 - My tips and tricks for optimizing mobile app performance and user experience
 
-## 📫 How to reach me
-
-- Email: omar.kader.dev@gmail.com
-
 ## 🤩 Support Me
 
 <a href="https://www.buymeacoffee.com/omar_kader">
