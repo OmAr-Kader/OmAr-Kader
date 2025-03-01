@@ -12,7 +12,7 @@
 - Skilled in **SwiftUI** for building intuitive user interfaces
 - Proficient in using **Xcode** for **iOS** app development
 #### Cross-Platform Development:
-- Experienced with **React Native** and **Flutter** for building apps that run on both **Android and iOS**
+- Experienced with **react Native** and **Flutter** for building apps that run on both **Android and iOS**
 - Proficient in **Compose Multiplatform** and **Kotlin Multiplatform** for shared codebases
 
 ### Backend and Cloud Services
@@ -53,7 +53,7 @@
 
 ## 💬 Ask me about
 
-- Anything related to **iOS**, **Android**, **KMM**, **CMP**, **React Native**, or **Flutter** development
+- Anything related to **iOS**, **Android**, **KMM**, **CMP**, **react Native**, or **Flutter** development
 - My experience with different mobile frameworks and libraries
 - My favorite mobile design patterns and architectures
 - My tips and tricks for optimizing mobile app performance and user experience
@@ -102,9 +102,9 @@
 
 ## 📊 My GitHub stats
 
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=pie)
-
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=OmAr-Kader)](https://git.io/streak-stats)
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
+![](https://github-readme-stats.vercel.app/api?username=OmAr-Kader&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
+![](https://github-readme-streak-stats.herokuapp.com/?user=OmAr-Kader&theme=react&hide_border=false&count_private=false)<br/>
 
 <!--
 
