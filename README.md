@@ -1,9 +1,12 @@
 <h1 align="center">Hi, I'm Omar Kader 👋</h1>
 <h3 align="center">Proficient Mobile Developer in 6 frameworks who loves to create challenging apps for different platforms.</h3>
 
+<br>
+
 ## 🚀 Skills and Tools
 
 ### Mobile Development
+
 #### Android Development:
 - Expert in **Kotlin** and **Java**
 - Proficient with **Jetpack Compose** for modern UI development
@@ -51,9 +54,8 @@
 - Available for freelance projects on **Upwork**, **Contra** and **Fiverr** with a profile showcasing diverse development skills.
 - Ability to work effectively in both independent and team environments
 
-##
-
 <br/>
+
 <p align="left">
  <a href="https://developer.apple.com/xcode/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/xcode/147EFB" alt="xcode" width="40" height="40"/> </a>
  <a href="https://developer.apple.com/ios" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/ios/9f9e9e" alt="ios" width="40" height="40"/> </a>
@@ -87,13 +89,16 @@
  <a href="https://www.adobe.com/products/xd.html" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/xd/xd-original.svg" alt="xd" width="40" height="40"/></a> 
 </p>
 
-##
+<br>
 
 ## 🤩 Support Me
 
 <a href="https://www.buymeacoffee.com/omar_kader">
     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" width="200" height="70" alt="Buy Me a Coffee">
 </a>
+
+<br>
+<br>
 
 ## 📊 My GitHub stats
 
