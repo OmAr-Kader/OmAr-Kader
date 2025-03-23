@@ -51,19 +51,6 @@
 - Available for freelance projects on **Upwork**, **Contra** and **Fiverr** with a profile showcasing diverse development skills.
 - Ability to work effectively in both independent and team environments
 
-## 💬 Ask me about
-
-- Anything related to **iOS**, **Android**, **KMM**, **CMP**, **react Native**, or **Flutter** development
-- My experience with different mobile frameworks and libraries
-- My favorite mobile design patterns and architectures
-- My tips and tricks for optimizing mobile app performance and user experience
-
-## 🤩 Support Me
-
-<a href="https://www.buymeacoffee.com/omar_kader">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" width="200" height="70" alt="Buy Me a Coffee">
-</a>
-
 ##
 
 <br/>
@@ -100,13 +87,22 @@
  <a href="https://www.adobe.com/products/xd.html" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/xd/xd-original.svg" alt="xd" width="40" height="40"/></a> 
 </p>
 
+## 🤩 Support Me
+
+<a href="https://www.buymeacoffee.com/omar_kader">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" width="200" height="70" alt="Buy Me a Coffee">
+</a>
+
 ## 📊 My GitHub stats
 
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
 ![](https://github-readme-stats.vercel.app/api?username=OmAr-Kader&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
 ![](https://github-readme-streak-stats.herokuapp.com/?user=OmAr-Kader&theme=react&hide_border=false&count_private=false)<br/>
-
+##
+![](https://github-profile-trophy.vercel.app/?username=OmAr-Kader&theme=dark&no-frame=true&no-bg=true&margin-w=4)
 <!--
+## 🏆 GitHub Trophies
+![](https://github-profile-trophy.vercel.app/?username=OmAr-Kader&theme=dark&no-frame=true&no-bg=true&margin-w=4)
 
 ![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical)
 ![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=pie)
