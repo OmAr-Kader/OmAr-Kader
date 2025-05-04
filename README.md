@@ -69,9 +69,9 @@
  <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="vscode" width="40" height="40"/> </a>
  <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://reactnative.dev/img/header_logo.svg" alt="reactnative" width="40" height="40"/> </a>
  <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> </a> 
- <a href="https://firebase.google.com/" target="_blank" rel="noreferrer">  <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a>
+ <a href="https://firebase.google.com/" target="_blank" rel="noreferrer">  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original-wordmark.svg" alt="firebase" width="40" height="40"/> </a>
  <a href="https://realm.io/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/bestofjs/bestofjs-webui/8665e8c267a0215f3159df28b33c365198101df5/public/logos/realm.svg" alt="realm" width="40" height="40"/> </a>
- <a href="https://supabase.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="supabase" width="40" height="40"/> </a>
+ <a href="https://supabase.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" alt="supabase" width="40" height="40"/> </a>
  <a href="https://docs.aws.amazon.com/s3/" target="_blank" rel="noreferrer"> <img src="https://github.com/OmAr-Kader/OmAr-Kader/assets/137582672/8b22dd6c-2f88-4451-af81-0d866f433898" alt="aws" width="40" height="40"/> </a>
  <a href="https://en.wikipedia.org/wiki/REST" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png" alt="supabase" width="40" height="40"/> </a>
  <a href="https://webrtc.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/webrtc/333333" alt="webrtc" width="40" height="40"/> </a>
