@@ -103,11 +103,10 @@
 
 ## 📊 My GitHub stats
 
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
-![](https://github-readme-stats.vercel.app/api?username=OmAr-Kader&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
+![](https://github-readme-stats-fast.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
+![](https://github-readme-stats-fast.vercel.app/api?username=OmAr-Kader&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
 ![](https://github-readme-streak-stats.herokuapp.com/?user=OmAr-Kader&theme=react&hide_border=false&count_private=false)<br/>
-##
-![](https://github-profile-trophy.vercel.app/?username=OmAr-Kader&theme=dark&no-frame=true&no-bg=true&margin-w=4)
+
 <!--
 ## 🏆 GitHub Trophies
 ![](https://github-profile-trophy.vercel.app/?username=OmAr-Kader&theme=dark&no-frame=true&no-bg=true&margin-w=4)
