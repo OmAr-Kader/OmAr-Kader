@@ -19,9 +19,11 @@
 - Proficient in **Compose Multiplatform** and **Kotlin Multiplatform** for shared codebases
 
 ### Backend and Cloud Services
-- Expertise in working with **Firebase**, **Realm**, **Supabase** and **AWS Amplify** for backend services.
-- Proficient in integrating apps with **REST API** and **GraphQL**
-- Familiar with real-time communication technologies like **WebRTC**, **XMPP** and **Zegocloud**.
+- **Admin Dashboards & Tooling:** Development of enterprise admin panels using **React** with **Vite**, focused.
+- **Database Management:** **PostgreSQL** and **MongoDB** (including Mongoose, Realm, and Agenda.js for job scheduling).
+- **Cloud Infrastructure & BaaS:** **AWS** (Lambda, API Gateway, DynamoDB, S3, Cognito), **Firebase**, and **Supabase**.
+- **Enterprise Backend Architecture:** High-performance, secure server-side using **Node.js**, **Express**, **Fastify**, and **NestJS**.
+- **APIs & Real-time Communication:** **REST**, **gRPC**, **WebSockets (Socket.IO)**, **MQTT**, and **WebRTC** for low-latency data exchange.
 
 ### App Features
 - Implemented **user authentication** and **authorization**.
@@ -76,6 +78,13 @@
  <a href="https://en.wikipedia.org/wiki/REST" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png" alt="supabase" width="40" height="40"/> </a>
  <a href="https://mqtt.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/mqtt/C93CD7" alt="mqtt" width="40" height="40"/> </a>
  <a href="https://webrtc.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/webrtc/333333" alt="webrtc" width="40" height="40"/> </a>
+ <a href="https://nodejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/> </a>
+ <a href="https://nestjs.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/nestjs/E0234E" alt="nestjs" width="40" height="40"/> </a>
+ <a href="https://www.fastify.io/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/fastify/000000" alt="fastify" width="40" height="40"/> </a>
+ <a href="https://react.dev/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="40" height="40"/> </a>
+ <a href="https://vitejs.dev/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/vite/646CFF" alt="vite" width="40" height="40"/> </a>
+ <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="mongodb" width="40" height="40"/> </a>
+ <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="40" height="40"/> </a>
  <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/atlassian_jira/atlassian_jira-icon.svg" alt="jira" width="40" height="40"/> </a>
  <a href="https://www.scrum.org/" target="_blank" rel="noreferrer"> <img src="https://wac-cdn.atlassian.com/dam/jcr:9567a40e-6541-4905-bf08-dfe201aa80e7/illustrations-spot-Agile.svg?cdnVersion=1194" alt="scrum" width="40" height="40"/> </a>
  <a href="https://junit.org/junit5/" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/117533873-484d4480-afef-11eb-9fad-67c8605e3592.png" alt="JUnit" width="40" height="40"/> </a>
@@ -103,9 +112,10 @@
 
 ## 📊 My GitHub stats
 
-![](https://github-readme-stats-fast.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
-![](https://github-readme-stats-fast.vercel.app/api?username=OmAr-Kader&theme=react&hide_border=false&include_all_commits=true&count_private=false)<br/>
-![](https://github-readme-streak-stats.herokuapp.com/?user=OmAr-Kader&theme=react&hide_border=false&count_private=false)<br/>
+![](https://github-readme-stats-fast.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=true)<br/>
+![](https://github-readme-stats-fast.vercel.app/api?username=OmAr-Kader&theme=react&hide_border=false&include_all_commits=true&count_private=true)<br/>
+![](https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true)<br/>
+
 
 <!--
 ## 🏆 GitHub Trophies
