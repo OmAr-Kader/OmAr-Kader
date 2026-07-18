@@ -19,15 +19,11 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install dependencies
-        run: npm install @octokit/rest
-
-      - name: Generate stats
+      - name: Generate SVG cards
         env:
           GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
           GH_USERNAME: OmAr-Kader
-        run: |
-          node scripts/generate-stats.js
+        run: node scripts/generate-stats.js
 
       - name: Commit generated SVGs
         run: |
@@ -37,5 +33,4 @@ jobs:
           git add assets/*.svg
 
           git commit -m "Update GitHub stats" || exit 0
-
           git push
