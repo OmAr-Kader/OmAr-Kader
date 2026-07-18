@@ -22,35 +22,19 @@ jobs:
       - name: Install dependencies
         run: npm install @octokit/rest
 
-      - name: Check GitHub Token
-        env:
-          GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
-        run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "METRICS_TOKEN is missing"
-            exit 1
-          fi
-
-          echo "Token exists"
-          echo "Token length: ${#GH_TOKEN}"
-
-          curl \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            https://api.github.com/user
-
-      - name: Generate stats SVG
+      - name: Generate stats
         env:
           GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
           GH_USERNAME: OmAr-Kader
         run: |
           node scripts/generate-stats.js
 
-      - name: Commit generated SVG
+      - name: Commit generated SVGs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add github-stats.svg
+          git add assets/*.svg
 
           git commit -m "Update GitHub stats" || exit 0
 
