@@ -29,15 +29,6 @@ jobs:
           path: profile/top-langs.svg
           token: ${{ secrets.METRICS_TOKEN }}
 
-      - name: Generate streak
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: streak
-          options: username=${{ github.repository_owner }}&show_icons=true&theme=react&count_private=true
-          path: profile/streak.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-
-
       - name: Commit cards
         run: |
           git config user.name "github-actions[bot]"
