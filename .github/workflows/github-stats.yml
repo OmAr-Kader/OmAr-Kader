@@ -2,8 +2,6 @@ name: Update GitHub Stats
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 */12 * * *"
 
 permissions:
   contents: write
@@ -16,7 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate Stats Card
+
+      # Stats + Top Languages
+      - name: Generate GitHub Stats
         uses: stats-organization/github-readme-stats-action@v1
         with:
           token: ${{ secrets.METRICS_TOKEN }}
@@ -27,7 +27,8 @@ jobs:
           count_private: true
           include_all_commits: true
 
-      - name: Generate Top Languages Card
+
+      - name: Generate Top Languages
         uses: stats-organization/github-readme-stats-action@v1
         with:
           token: ${{ secrets.METRICS_TOKEN }}
@@ -38,12 +39,15 @@ jobs:
           count_private: true
           include_all_commits: true
 
-      - name: Generate Streak Card
-        uses: streak-stats/streak-stats-action@v1
+
+      # Streak
+      - name: Generate Streak
+        uses: DenverCoder1/github-readme-streak-stats@main
         with:
-          username: OmAr-Kader
-          output: assets/streak.svg
-          theme: react
+          USERNAME: OmAr-Kader
+          OUTPUT_PATH: assets/streak.svg
+          THEME: react
+
 
       - name: Commit SVGs
         run: |
@@ -53,4 +57,5 @@ jobs:
           git add assets/*.svg
 
           git commit -m "Update GitHub stats" || exit 0
+
           git push
