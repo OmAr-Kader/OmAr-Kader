@@ -14,14 +14,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: "22"
 
       - name: Install dependencies
+        run: npm install @octokit/rest
+
+      - name: Check GitHub Token
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
         run: |
-          npm install @octokit/rest
+          if [ -z "$GH_TOKEN" ]; then
+            echo "METRICS_TOKEN is missing"
+            exit 1
+          fi
+
+          echo "Token exists"
+          echo "Token length: ${#GH_TOKEN}"
+
+          curl \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            https://api.github.com/user
 
       - name: Generate stats SVG
         env:
