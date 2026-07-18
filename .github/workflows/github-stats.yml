@@ -2,35 +2,37 @@ name: Update GitHub Stats
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
 
 permissions:
   contents: write
 
 jobs:
-  generate:
+  stats:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Generate GitHub Stats
+        uses: stats-organization/github-readme-stats-action@v1
         with:
-          node-version: "22"
+          token: ${{ secrets.METRICS_TOKEN }}
+          username: OmAr-Kader
+          output_dir: assets
+          commits: true
+          private: true
+          theme: react
 
-      - name: Generate SVG cards
-        env:
-          GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
-          GH_USERNAME: OmAr-Kader
-        run: node scripts/generate-stats.js
-
-      - name: Commit generated SVGs
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add assets/*.svg
+          git add assets/
 
           git commit -m "Update GitHub stats" || exit 0
+
           git push
