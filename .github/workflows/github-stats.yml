@@ -2,6 +2,8 @@ name: Update GitHub Stats
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
 
 permissions:
   contents: write
@@ -14,18 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate Top Languages
-        uses: stats-organization/github-readme-stats-action@v1
-        with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          username: OmAr-Kader
-          card: top-langs
-          output: assets/top-langs.svg
-          theme: react
-          count_private: true
-          include_all_commits: true
-
-      - name: Generate Stats
+      - name: Generate Stats Card
         uses: stats-organization/github-readme-stats-action@v1
         with:
           token: ${{ secrets.METRICS_TOKEN }}
@@ -36,17 +27,25 @@ jobs:
           count_private: true
           include_all_commits: true
 
-      - name: Generate Streak
+      - name: Generate Top Languages Card
         uses: stats-organization/github-readme-stats-action@v1
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           username: OmAr-Kader
-          card: streak
-          output: assets/streak.svg
+          card: top-langs
+          output: assets/top-langs.svg
           theme: react
           count_private: true
+          include_all_commits: true
 
-      - name: Commit generated SVGs
+      - name: Generate Streak Card
+        uses: streak-stats/streak-stats-action@v1
+        with:
+          username: OmAr-Kader
+          output: assets/streak.svg
+          theme: react
+
+      - name: Commit SVGs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -54,5 +53,4 @@ jobs:
           git add assets/*.svg
 
           git commit -m "Update GitHub stats" || exit 0
-
           git push
