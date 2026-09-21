@@ -1,5 +1,5 @@
 <h1 align="center">Hi, I'm Omar Kader 👋</h1>
-<h3 align="center">Software Engineer — Mobile & Back-End who loves to create challenging apps for different platforms.</h3>
+<h3 align="center">Software Engineer — Mobile & Back-End</h3>
 
 <br>
 
