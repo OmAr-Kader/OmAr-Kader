@@ -1,5 +1,5 @@
 <h1 align="center">Hi, I'm Omar Kader 👋</h1>
-<h3 align="center">Proficient Mobile Developer in 6 frameworks who loves to create challenging apps for different platforms.</h3>
+<h3 align="center">Software Engineer — Mobile & Back-End who loves to create challenging apps for different platforms.</h3>
 
 <br>
 
