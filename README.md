@@ -3,6 +3,8 @@
 
 <br>
 
+![](/profile/info_card.svg)<br/>
+
 ## 🚀 Skills and Tools
 
 ### Mobile Development
@@ -102,6 +104,7 @@
 <br>
 
 ## 📊 My GitHub stats
+
 
 ![](/profile/top-langs.svg)<br/>
 ![](/profile/stats.svg)<br/>
