@@ -3,8 +3,8 @@ name: Update streak stats
 on:
   push:
     paths:
-      - ".github/workflows/streak-stats.yml" # Run any time this file is modified
-  workflow_dispatch: # Run manually from the Actions tab
+      - ".github/workflows/streak-stats.yml"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -22,10 +22,18 @@ jobs:
           path: profile/streak.svg
           token: ${{ secrets.METRICS_TOKEN }}
 
-      - name: Commit streak stats
+      - name: Generate top languages
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&theme=react
+          path: profile/top-langs.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+
+      - name: Commit generated stats
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/streak.svg
-          git commit -m "Update streak stats" || exit 0
+          git add profile/streak.svg profile/top-langs.svg
+          git commit -m "Update stats cards" || exit 0
           git push
