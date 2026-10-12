@@ -101,15 +101,6 @@
 
 <br>
 
-## 🤩 Support Me
-
-<a href="https://www.buymeacoffee.com/omar_kader">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" width="200" height="70" alt="Buy Me a Coffee">
-</a>
-
-<br>
-<br>
-
 ## 📊 My GitHub stats
 
 ![](/profile/top-langs.svg)<br/>
@@ -143,4 +134,13 @@
 </p>
 
 ![GitHub stats](https://github-readme-stats.vercel.app/api?username=OmAr-Kader&show_icons=true&theme=radical)
+
+## 🤩 Support Me
+
+<a href="https://www.buymeacoffee.com/omar_kader">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" width="200" height="70" alt="Buy Me a Coffee">
+</a>
+
+<br>
+
 -->
