@@ -49,7 +49,6 @@
  <a href="https://www.adobe.com/products/xd.html" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/xd/xd-original.svg" alt="xd" width="40" height="40"/></a> 
 </p>
 
-<br>
 
 ## 📊 My GitHub stats
 
@@ -57,7 +56,7 @@
 <p align="center">
   <img src="profile/top-langs.svg" />
 </p>
-<br>
+
 <table>
   <tr>
     <td align="center">
@@ -68,7 +67,6 @@
     </td>
   </tr>
 </table>
-<br>
 
 <!--
 
