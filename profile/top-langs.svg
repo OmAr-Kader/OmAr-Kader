@@ -140,7 +140,7 @@
           stroke-width="25"
           stroke-dasharray="502.6548245743669"
           stroke-dashoffset="0"
-          size="32.22266095980038"
+          size="30.306090602369522"
           data-testid="lang-donut"
         />
       </g>
@@ -154,8 +154,8 @@
           stroke="#A97BFF"
           stroke-width="25"
           stroke-dasharray="502.6548245743669"
-          stroke-dashoffset="161.96875992067763"
-          size="25.07093483908715"
+          stroke-dashoffset="152.33502655268921"
+          size="23.57974171243568"
           data-testid="lang-donut"
         />
       </g>
@@ -166,11 +166,11 @@
           cy="100"
           r="80"
           fill="transparent"
-          stroke="#3178c6"
+          stroke="#dea584"
           stroke-width="25"
           stroke-dasharray="502.6548245743669"
-          stroke-dashoffset="287.989023455245"
-          size="21.20615381440949"
+          stroke-dashoffset="270.8597358924216"
+          size="20.581027623938315"
           data-testid="lang-donut"
         />
       </g>
@@ -181,11 +181,11 @@
           cy="100"
           r="80"
           fill="transparent"
-          stroke="#dea584"
+          stroke="#3178c6"
           stroke-width="25"
           stroke-dasharray="502.6548245743669"
-          stroke-dashoffset="394.5827787100354"
-          size="15.558537251601118"
+          stroke-dashoffset="374.3112641911307"
+          size="19.944833843147"
           data-testid="lang-donut"
         />
       </g>
@@ -199,8 +199,8 @@
           stroke="#f1e05a"
           stroke-width="25"
           stroke-dasharray="502.6548245743669"
-          stroke-dashoffset="472.78851683840855"
-          size="3.7665607651411417"
+          stroke-dashoffset="474.5649337570502"
+          size="3.5425296486254214"
           data-testid="lang-donut"
         />
       </g>
@@ -214,8 +214,8 @@
           stroke="#00B4AB"
           stroke-width="25"
           stroke-dasharray="502.6548245743669"
-          stroke-dashoffset="491.72131624491567"
-          size="2.175152369960721"
+          stroke-dashoffset="492.37162994784325"
+          size="2.045776569484061"
           data-testid="lang-donut"
         />
       </g>
@@ -228,42 +228,42 @@
     <g class="stagger" style="animation-delay: 450ms">
       <circle cx="5" cy="6" r="5" fill="#F05138" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Swift 32.22%
+        Swift 30.31%
       </text>
     </g>
   </g><g transform="translate(0, 25)">
     <g class="stagger" style="animation-delay: 600ms">
       <circle cx="5" cy="6" r="5" fill="#A97BFF" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Kotlin 25.07%
+        Kotlin 23.58%
       </text>
     </g>
   </g><g transform="translate(0, 50)">
     <g class="stagger" style="animation-delay: 750ms">
-      <circle cx="5" cy="6" r="5" fill="#3178c6" />
+      <circle cx="5" cy="6" r="5" fill="#dea584" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        TypeScript 21.21%
+        Rust 20.58%
       </text>
     </g>
   </g></g><g transform="translate(150, 0)"><g transform="translate(0, 0)">
     <g class="stagger" style="animation-delay: 450ms">
-      <circle cx="5" cy="6" r="5" fill="#dea584" />
+      <circle cx="5" cy="6" r="5" fill="#3178c6" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Rust 15.56%
+        TypeScript 19.94%
       </text>
     </g>
   </g><g transform="translate(0, 25)">
     <g class="stagger" style="animation-delay: 600ms">
       <circle cx="5" cy="6" r="5" fill="#f1e05a" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        JavaScript 3.77%
+        JavaScript 3.54%
       </text>
     </g>
   </g><g transform="translate(0, 50)">
     <g class="stagger" style="animation-delay: 750ms">
       <circle cx="5" cy="6" r="5" fill="#00B4AB" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Dart 2.18%
+        Dart 2.05%
       </text>
     </g>
   </g></g>
