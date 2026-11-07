@@ -15,8 +15,6 @@
  <a href="https://kotlinlang.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg" alt="kotlin" width="40" height="40"/> </a>
  <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/gilbarbara/logos/52addcaa18dfecb4df77f3ee0753dca6b98187ad/logos/compose-multiplatform.svg" alt="compose-multiplatform" width="40" height="40"/> </a>
  <a href="https://lp.jetbrains.com/kmm-for-crossplatform-developers/" target="_blank" rel="noreferrer"> <img src="https://github.com/OmAr-Kader/OmAr-Kader/assets/137582672/78f1890b-2231-4d4d-84c6-e367597b41fd" alt="kmm" width="40" height="46"/> </a>  
- <a href="https://flutter.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="40" height="40"/> </a>
- <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="40" height="40"/> </a>
  <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="vscode" width="40" height="40"/> </a>
  <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://reactnative.dev/img/header_logo.svg" alt="reactnative" width="40" height="40"/> </a>
  <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> </a> 
@@ -27,6 +25,11 @@
  <a href="https://en.wikipedia.org/wiki/REST" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png" alt="supabase" width="40" height="40"/> </a>
  <a href="https://mqtt.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/mqtt/C93CD7" alt="mqtt" width="40" height="40"/> </a>
  <a href="https://webrtc.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/webrtc/333333" alt="webrtc" width="40" height="40"/> </a>
+ <a href="https://www.rabbitmq.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/rabbitmq/FF6600" alt="rabbitmq" width="40" height="40"/> </a>
+ <a href="https://github.com/modelcontextprotocol" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/modelcontextprotocol/691F69" alt="modelcontextprotocol" width="40" height="40"/> </a>
+
+
+ 
  <a href="https://rust-lang.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/rust/fc5e03" alt="rust" width="40" height="40"/> </a>
  <a href="https://nodejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/> </a>
  <a href="https://nestjs.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/nestjs/E0234E" alt="nestjs" width="40" height="40"/> </a>
@@ -44,8 +47,6 @@
  <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a>
  <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a>
  <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a>
- <a href="https://www.photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-original.svg" alt="photoshop" width="40" height="40"/> </a>
- <a href="https://www.adobe.com/in/products/illustrator.html" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/illustrator/illustrator-plain.svg" alt="illustrator" width="40" height="40"/> </a> 
  <a href="https://www.adobe.com/products/xd.html" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/xd/xd-original.svg" alt="xd" width="40" height="40"/></a> 
 </p>
 
