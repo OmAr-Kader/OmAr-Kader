@@ -5,59 +5,6 @@
 
 ![](/profile/info_card.svg)<br/>
 
-## 🚀 Skills and Tools
-
-### Mobile Development
-
-#### Android Development:
-- Expert in **Kotlin** and **Java**
-- Proficient with **Jetpack Compose** for modern UI development
-- Experienced in using **Android Studio** for app development
-#### iOS Development:
-- Skilled in **SwiftUI** for building intuitive user interfaces
-- Proficient in using **Xcode** for **iOS** app development
-#### Cross-Platform Development:
-- Experienced with **react Native** and **Flutter** for building apps that run on both **Android and iOS**
-- Proficient in **Compose Multiplatform** and **Kotlin Multiplatform** for shared codebases
-
-### Backend and Cloud Services
-- **Admin Dashboards & Tooling:** Development of enterprise admin panels using **React** with **Vite**, focused.
-- **Database Management:** **PostgreSQL** and **MongoDB** (including Mongoose, Realm, and Agenda.js for job scheduling).
-- **Cloud Infrastructure & BaaS:** **AWS** (Lambda, API Gateway, DynamoDB, S3, Cognito), **Firebase**, and **Supabase**.
-- **Enterprise Backend Architecture:** High-performance, secure server-side using **Node.js**, **Express**, **Fastify**, and **NestJS**.
-- **APIs & Real-time Communication:** **REST**, **gRPC**, **WebSockets (Socket.IO)**, **MQTT**, and **WebRTC** for low-latency data exchange.
-
-### App Features
-- Implemented **user authentication** and **authorization**.
-- Integrated **push notifications** and **real-time updates**.
-- Designed and built **responsive UI** and **smooth animations**.
-- Implemented **offline capabilities** and **data synchronization**.
-- Developed applications using **Web3 Ethereum** for blockchain integration.
-- Integrated **Chart Swift API** for data visualization.
-- Implemented **map tracking** features for location-based services.
-- Developed **real-time chat** functionalities.
-- Built **e-commerce** and **e-learning** platforms with advanced features
-- Integration with **Google APIs** (Maps, Drive, Sheets, Translation, Docs, Slides and others)
-- Bringing existing **iOS** apps to **visionOS**, **iPadOS**
-
-### Testing and Debugging
-- Experienced in testing and debugging with **JUnit**, **XCTest**, and **Flutter Test**.
-
-### UI/UX Design
-- Skilled in designing user interfaces with **Figma** and **Adobe XD**.
-- Proficient in graphic design tools such as **Illustrator** and **Photoshop**.
-
-### Version Control and Project Management
-- Strong knowledge of **Git** and version control practices.
-- Proficient in **Agile development methodologies** and using tools like **JIRA** for project management.
-
-### Collaboration and Open Source
-- Active contributor to **open source projects** on GitHub.
-
-### Freelance and Professional Work
-- Available for freelance projects on **Upwork**, **Contra** and **Fiverr** with a profile showcasing diverse development skills.
-- Ability to work effectively in both independent and team environments
-
 <br/>
 
 <p align="left">
@@ -80,6 +27,7 @@
  <a href="https://en.wikipedia.org/wiki/REST" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png" alt="supabase" width="40" height="40"/> </a>
  <a href="https://mqtt.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/mqtt/C93CD7" alt="mqtt" width="40" height="40"/> </a>
  <a href="https://webrtc.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/webrtc/333333" alt="webrtc" width="40" height="40"/> </a>
+ <a href="https://rust-lang.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/rust/fc5e03" alt="rust" width="40" height="40"/> </a>
  <a href="https://nodejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/> </a>
  <a href="https://nestjs.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/nestjs/E0234E" alt="nestjs" width="40" height="40"/> </a>
  <a href="https://www.fastify.io/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/fastify/000000" alt="fastify" width="40" height="40"/> </a>
@@ -101,16 +49,59 @@
  <a href="https://www.adobe.com/products/xd.html" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/xd/xd-original.svg" alt="xd" width="40" height="40"/></a> 
 </p>
 
-<br>
 
 ## 📊 My GitHub stats
 
 
-![](/profile/top-langs.svg)<br/>
-![](/profile/stats.svg)<br/>
-![](https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true)<br/>
+<p align="center">
+  <img src="profile/top-langs.svg" />
+</p>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="/profile/stats.svg">
+    </td>
+    <td align="center">
+      <img src="https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true">
+    </td>
+  </tr>
+</table>
 
 <!--
+
+## 🚀 Skills and Tools
+
+### Mobile Development
+- **Android:** Kotlin, Java, Jetpack Compose, Android Studio.
+- **iOS:** Swift, SwiftUI, Xcode.
+- **Cross-Platform:** Kotlin Multiplatform, Compose Multiplatform, React Native, Flutter.
+
+### Backend and Cloud
+- **Backend:** Node.js, Express, Fastify, NestJS.
+- **Admin Dashboards:** React, Vite.
+- **Databases & Job Scheduling:** PostgreSQL, MongoDB, Mongoose, Realm, Agenda.js.
+- **Cloud:** AWS (Lambda, API Gateway, DynamoDB, S3, Cognito), Firebase, Supabase.
+- **APIs & Communication:** REST, gRPC, WebSockets, Socket.IO, MQTT, WebRTC.
+
+### App Features
+Authentication, push notifications, real-time updates, offline support, data synchronization, responsive UI, animations, map tracking, real-time chat, e-commerce, e-learning, Web3 Ethereum, and data visualization with Chart Swift API.
+- **Integrations:** Google Maps, Drive, Sheets, Translation, Docs, Slides, and other Google APIs.
+- **Platform Expansion:** Porting iOS apps to iPadOS and visionOS.
+
+### Testing, Design & Workflow
+- **Testing:** JUnit, XCTest, Flutter Test.
+- **UI/UX & Graphics:** Figma, Adobe XD, Illustrator, Photoshop.
+- **Version Control & Management:** Git, Agile, Jira.
+- **Open Source:** Active GitHub contributor.
+
+### Freelance
+Available on **Upwork, Contra, and Fiverr**. Effective in both independent and team environments.
+
+
+
+
+
 ![](/profile/streak.svg)<br/>
 
 ![](https://github-readme-stats-fast.vercel.app/api/top-langs/?username=OmAr-Kader&layout=donut-vertical&theme=react&hide_border=false&include_all_commits=true&count_private=true)<br/>
