@@ -58,9 +58,10 @@
   <img src="profile/top-langs.svg" />
 </p>
 
-![](/profile/stats.svg)
-![](https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true)<br/>
-
+<p align="center">
+  <img src="/profile/stats.svg" />
+  <img src="https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true" />
+</p>
 <!--
 
 
