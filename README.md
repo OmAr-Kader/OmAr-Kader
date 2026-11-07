@@ -28,10 +28,7 @@
  <a href="https://www.rabbitmq.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/rabbitmq/FF6600" alt="rabbitmq" width="40" height="40"/> </a>
  <a href="https://github.com/modelcontextprotocol" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/modelcontextprotocol/691F69" alt="modelcontextprotocol" width="40" height="40"/> </a>
  <a href="https://docs.stripe.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="stripe" width="40" height="40"/> </a>
- <a href="https://redis.io/docs/latest/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/redis/FF4438" alt="redis" width="40" height="40"/> </a>
-
-
- 
+ <a href="https://redis.io/docs/latest/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/redis/FF4438" alt="redis" width="40" height="40"/> </a> 
  <a href="https://rust-lang.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/rust/fc5e03" alt="rust" width="40" height="40"/> </a>
  <a href="https://nodejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/> </a>
  <a href="https://nestjs.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/nestjs/E0234E" alt="nestjs" width="40" height="40"/> </a>
