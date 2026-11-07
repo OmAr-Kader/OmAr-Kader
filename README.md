@@ -57,14 +57,20 @@
 <p align="center">
   <img src="profile/top-langs.svg" />
 </p>
-
-<div align="center">
-  <img src="/profile/stats.svg" />&nbsp;&nbsp;
-  <img src="https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true" />
-</div>
+<br>
+<table>
+  <tr>
+    <td align="center">
+      <img src="/profile/stats.svg">
+    </td>
+    <td align="center">
+      <img src="https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true">
+    </td>
+  </tr>
+</table>
+<br>
 
 <!--
-
 
 ## 🚀 Skills and Tools
 
