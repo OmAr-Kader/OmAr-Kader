@@ -1,0 +1,148 @@
+name: Update top languages
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: top-langs
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OWNER: ${{ github.repository_owner }}
+      LANGS_COUNT: "6"
+      INCLUDE_FORKS: "false"
+      EXCLUDE_REPOS: "" # comma-separated repo names
+      EXCLUDE_LANGS: "" # comma-separated, e.g. "HTML,CSS"
+      OUT: profile/top-langs-custom.svg
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate top languages card
+        run: |
+          mkdir -p "$(dirname "$OUT")"
+          python3 - <<'PY'
+          import json, os, math, html, urllib.request
+          from concurrent.futures import ThreadPoolExecutor
+
+          TOKEN = os.environ["GH_TOKEN"]
+          OWNER = os.environ["OWNER"]
+          N = int(os.environ["LANGS_COUNT"])
+          FORKS = os.environ["INCLUDE_FORKS"].lower() == "true"
+          EX_REPOS = {x.strip().lower() for x in os.environ["EXCLUDE_REPOS"].split(",") if x.strip()}
+          EX_LANGS = {x.strip().lower() for x in os.environ["EXCLUDE_LANGS"].split(",") if x.strip()}
+          OUT = os.environ["OUT"]
+
+          def api(path):
+              req = urllib.request.Request(
+                  "https://api.github.com" + path,
+                  headers={
+                      "Authorization": f"Bearer {TOKEN}",
+                      "Accept": "application/vnd.github+json",
+                      "X-GitHub-Api-Version": "2022-11-28",
+                  },
+              )
+              with urllib.request.urlopen(req) as r:
+                  return json.load(r)
+
+          # 1) repos (public repos of the owner; the token can't see more than that)
+          repos, page = [], 1
+          while True:
+              batch = api(f"/users/{OWNER}/repos?type=owner&per_page=100&page={page}")
+              if not batch:
+                  break
+              repos += batch
+              page += 1
+          repos = [
+              r for r in repos
+              if (FORKS or not r["fork"]) and r["name"].lower() not in EX_REPOS
+          ]
+
+          # 2) language bytes per repo
+          def langs(r):
+              return api(f"/repos/{r['full_name']}/languages")
+
+          totals = {}
+          with ThreadPoolExecutor(8) as ex:
+              for d in ex.map(langs, repos):
+                  for k, v in d.items():
+                      if k.lower() not in EX_LANGS:
+                          totals[k] = totals.get(k, 0) + v
+
+          top = sorted(totals.items(), key=lambda kv: -kv[1])[:N]
+          s = sum(v for _, v in top) or 1
+          top = [(k, v * 100 / s) for k, v in top]
+
+          COLORS = {
+              "Swift": "#F05138", "Kotlin": "#A97BFF", "Rust": "#dea584",
+              "TypeScript": "#3178c6", "JavaScript": "#f1e05a", "Dart": "#00B4AB",
+              "Python": "#3572A5", "Java": "#b07219", "HTML": "#e34c26",
+              "CSS": "#663399", "SCSS": "#c6538c", "Shell": "#89e051",
+              "C": "#555555", "C++": "#f34b7d", "C#": "#178600", "Go": "#00ADD8",
+              "Ruby": "#701516", "PHP": "#4F5D95", "Objective-C": "#438eff",
+              "Vue": "#41b883", "Dockerfile": "#384d54", "PLpgSQL": "#e38c00",
+              "Makefile": "#427819", "Lua": "#000080", "Metal": "#8f14e9",
+          }
+          col = lambda k: COLORS.get(k, "#8b949e")
+
+          # 3) SVG
+          R, CX, CY = 80, 150, 100
+          C = 2 * math.pi * R
+          donut, start = [], 0.0
+          for i, (k, p) in enumerate(top):
+              length = p / 100 * C
+              donut.append(
+                  f'<g class="stagger" style="animation-delay:{(i+1)*100}ms">'
+                  f'<circle cx="{CX}" cy="{CY}" r="{R}" fill="transparent" stroke="{col(k)}" '
+                  f'stroke-width="25" stroke-dasharray="{length:.2f} {C:.2f}" '
+                  f'stroke-dashoffset="{-start:.2f}" transform="rotate(-90 {CX} {CY})"/></g>'
+              )
+              start += length
+
+          per_col = max(1, math.ceil(len(top) / 2))
+          names = []
+          for i, (k, p) in enumerate(top):
+              x, y = (i // per_col) * 150, (i % per_col) * 25
+              names.append(
+                  f'<g transform="translate({x},{y})"><g class="stagger" style="animation-delay:{450 + (i % per_col) * 150}ms">'
+                  f'<circle cx="5" cy="6" r="5" fill="{col(k)}"/>'
+                  f'<text x="15" y="10" class="lang-name">{html.escape(k)} {p:.2f}%</text></g></g>'
+              )
+
+          H = 55 + 220 + per_col * 25 + 25
+          svg = f"""<svg width="300" height="{H}" viewBox="0 0 300 {H}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most Used Languages">
+          <title>Most Used Languages</title>
+          <style>
+            .header {{ font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #61dafb; animation: fade .8s ease-in-out forwards; }}
+            .lang-name {{ font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #fff; }}
+            .stagger {{ opacity: 0; animation: fade .3s ease-in-out forwards; }}
+            @keyframes fade {{ from {{ opacity: 0 }} to {{ opacity: 1 }} }}
+          </style>
+          <rect x="0.5" y="0.5" rx="4.5" width="299" height="{H - 1}" stroke="#e4e2e2" fill="#20232a"/>
+          <g transform="translate(25,35)"><text class="header">Most Used Languages</text></g>
+          <g transform="translate(0,55)">
+            {''.join(donut)}
+            <g transform="translate(25,220)">{''.join(names)}</g>
+          </g>
+          </svg>"""
+          # strip the YAML indentation from the SVG text
+          svg = "\n".join(line.strip() for line in svg.splitlines())
+          open(OUT, "w").write(svg + "\n")
+          print(f"{len(repos)} repos -> " + ", ".join(f"{k} {p:.1f}%" for k, p in top))
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT"
+          git diff --cached --quiet && exit 0
+          git commit -m "Update top languages card"
+          git push
