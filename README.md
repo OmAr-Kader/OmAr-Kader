@@ -1,7 +1,12 @@
-<h1 align="center">Hi, I'm Omar Kader 👋</h1>
-<h3 align="center">Software Engineer — Mobile & Back-End</h3>
+<h1 align="center">Hey, buddy 👋</h1>
 
-<br>
+<p align="center">
+  <img src="profile/quote.svg" width="100%" alt="">
+</p>
+
+___
+
+<h3 align="center">Software Engineer — Mobile & Back-End</h3>
 
 ![](/profile/info_card.svg)<br/>
 
