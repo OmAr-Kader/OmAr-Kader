@@ -17,11 +17,15 @@ jobs:
       GH_TOKEN: ${{ secrets.LANGS_TOKEN || secrets.GITHUB_TOKEN }}
       HAS_PAT: ${{ secrets.LANGS_TOKEN != '' }}
       OWNER: ${{ github.repository_owner }}
-      LANGS_COUNT: "6"
+      TOP_LANGUAGE: "4" # big highlighted rows
+      ALL_LANGUAGE: "4" # total rows shown; if equal to TOP_LANGUAGE, no second section
+      ALL_LANGUAGE_CHART: "6" # languages in the stacked strip under the header, 0 = hide strip
+      BG_COLOR: "#20232a"
       INCLUDE_FORKS: "false"
       EXCLUDE_REPOS: "" # comma-separated repo names
       EXCLUDE_LANGS: "" # comma-separated, e.g. "HTML,CSS"
-      OUT: profile/top-langs-custom.svg
+      AFFILIATION: "owner" # add ",organization_member,collaborator" to count org / shared repos
+      OUT: profile/top-langs.svg
 
     steps:
       - uses: actions/checkout@v6
@@ -35,12 +39,17 @@ jobs:
 
           TOKEN = os.environ["GH_TOKEN"]
           OWNER = os.environ["OWNER"]
-          N = int(os.environ["LANGS_COUNT"])
+          TOP_N = max(1, int(os.environ["TOP_LANGUAGE"]))
+          N = max(1, int(os.environ["ALL_LANGUAGE"]))
+          CHART_N = max(0, int(os.environ["ALL_LANGUAGE_CHART"].strip() or 0))
+          CHART = CHART_N > 0
+          BG = os.environ["BG_COLOR"].strip() or "#20232a"
           FORKS = os.environ["INCLUDE_FORKS"].lower() == "true"
           EX_REPOS = {x.strip().lower() for x in os.environ["EXCLUDE_REPOS"].split(",") if x.strip()}
           EX_LANGS = {x.strip().lower() for x in os.environ["EXCLUDE_LANGS"].split(",") if x.strip()}
           OUT = os.environ["OUT"]
           HAS_PAT = os.environ["HAS_PAT"] == "true"
+          AFF = os.environ["AFFILIATION"]
 
           def api(path):
               req = urllib.request.Request(
@@ -54,19 +63,31 @@ jobs:
               with urllib.request.urlopen(req) as r:
                   return json.load(r)
 
-          # 1) repos (public repos of the owner; the token can't see more than that)
+          # 1) repos
           repos, page = [], 1
           while True:
-              url = "/user/repos?affiliation=owner&visibility=all" if HAS_PAT else f"/users/{OWNER}/repos?type=owner"
+              url = f"/user/repos?affiliation={AFF}&visibility=all" if HAS_PAT else f"/users/{OWNER}/repos?type=owner"
               batch = api(f"{url}&per_page=100&page={page}")
               if not batch:
                   break
               repos += batch
               page += 1
+          # counts only, never repo names: logs of a public repo are public
+          print(
+              f"API returned {len(repos)} repos: "
+              f"{sum(bool(r.get('private')) for r in repos)} private, "
+              f"{sum(bool(r['fork']) for r in repos)} forks, "
+              f"{sum(r['owner']['login'].lower() != OWNER.lower() for r in repos)} owned by other accounts"
+          )
           repos = [
               r for r in repos
               if (FORKS or not r["fork"]) and r["name"].lower() not in EX_REPOS
           ]
+
+          mode = "LANGS_TOKEN (PAT)" if HAS_PAT else "GITHUB_TOKEN (public repos only)"
+          print(f"token: {mode}; repos counted: {len(repos)} ({sum(bool(r.get('private')) for r in repos)} private)")
+          if not HAS_PAT:
+              print("::warning::LANGS_TOKEN secret not found in this repo, private repos are NOT counted")
 
           # 2) language bytes per repo
           def langs(r):
@@ -79,9 +100,11 @@ jobs:
                       if k.lower() not in EX_LANGS:
                           totals[k] = totals.get(k, 0) + v
 
-          top = sorted(totals.items(), key=lambda kv: -kv[1])[:N]
-          s = sum(v for _, v in top) or 1
-          top = [(k, v * 100 / s) for k, v in top]
+          # percentages are shares of the largest set shown (rows or strip), so both agree
+          pool = sorted(totals.items(), key=lambda kv: -kv[1])[: max(N, CHART_N)]
+          s = sum(v for _, v in pool) or 1
+          pool = [(k, v * 100 / s) for k, v in pool]
+          top = pool[:N]
 
           COLORS = {
               "Swift": "#F05138", "Kotlin": "#A97BFF", "Rust": "#dea584",
@@ -95,48 +118,95 @@ jobs:
           }
           col = lambda k: COLORS.get(k, "#8b949e")
 
-          # 3) SVG
-          R, CX, CY = 80, 150, 100
-          C = 2 * math.pi * R
-          donut, start = [], 0.0
-          for i, (k, p) in enumerate(top):
-              length = p / 100 * C
-              donut.append(
-                  f'<g class="stagger" style="animation-delay:{(i+1)*100}ms">'
-                  f'<circle cx="{CX}" cy="{CY}" r="{R}" fill="transparent" stroke="{col(k)}" '
-                  f'stroke-width="25" stroke-dasharray="{length:.2f} {C:.2f}" '
-                  f'stroke-dashoffset="{-start:.2f}" transform="rotate(-90 {CX} {CY})"/></g>'
-              )
-              start += length
+          # 3) SVG: vertical card, top 3 highlighted, next 3 compact
+          W, PAD = 360, 28
+          BW = W - 2 * PAD
+          esc = html.escape
+          head, rest = top[:TOP_N], top[TOP_N:N]
+          lead = top[0][1] if top else 1
+          defs, body = [], []
 
-          per_col = max(1, math.ceil(len(top) / 2))
-          names = []
-          for i, (k, p) in enumerate(top):
-              x, y = (i // per_col) * 150, (i % per_col) * 25
-              names.append(
-                  f'<g transform="translate({x},{y})"><g class="stagger" style="animation-delay:{450 + (i % per_col) * 150}ms">'
-                  f'<circle cx="5" cy="6" r="5" fill="{col(k)}"/>'
-                  f'<text x="15" y="10" class="lang-name">{html.escape(k)} {p:.2f}%</text></g></g>'
-              )
+          def bar_w(p):
+              return max(BW * p / lead, 6)
 
-          H = 55 + 220 + per_col * 25 + 25
-          svg = f"""<svg width="300" height="{H}" viewBox="0 0 300 {H}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most Used Languages">
-          <title>Most Used Languages</title>
-          <style>
-            .header {{ font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #61dafb; animation: fade .8s ease-in-out forwards; }}
-            .lang-name {{ font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #fff; }}
-            .stagger {{ opacity: 0; animation: fade .3s ease-in-out forwards; }}
-            @keyframes fade {{ from {{ opacity: 0 }} to {{ opacity: 1 }} }}
-          </style>
-          <rect x="0.5" y="0.5" rx="4.5" width="299" height="{H - 1}" stroke="#e4e2e2" fill="#20232a"/>
-          <g transform="translate(25,35)"><text class="header">Most Used Languages</text></g>
-          <g transform="translate(0,55)">
-            {''.join(donut)}
-            <g transform="translate(25,220)">{''.join(names)}</g>
-          </g>
-          </svg>"""
-          # strip the YAML indentation from the SVG text
-          svg = "\n".join(line.strip() for line in svg.splitlines())
+          # composition strip (all languages, stacked)
+          if CHART:
+              x, seg = 0.0, [f'<rect width="{BW}" height="8" fill="#ffffff" fill-opacity=".08"/>']
+              for k, p in pool[:CHART_N]:
+                  w = p / 100 * BW
+                  seg.append(f'<rect x="{x:.2f}" y="0" width="{w:.2f}" height="8" fill="{col(k)}" stroke="{BG}" stroke-width="1"/>')
+                  x += w
+              body.append(f'<g class="fade" style="animation-delay:100ms" transform="translate({PAD},72)" clip-path="url(#ov)">{"".join(seg)}</g>')
+
+          # top languages: big rows
+          y0 = 110 if CHART else 96
+          for i, (k, p) in enumerate(head):
+              c, y = col(k), y0 + i * 60
+              defs.append(
+                  f'<linearGradient id="g{i}" x1="0" x2="1" y1="0" y2="0">'
+                  f'<stop offset="0" stop-color="{c}" stop-opacity=".5"/><stop offset="1" stop-color="{c}"/></linearGradient>'
+              )
+              body.append(
+                  f'<g transform="translate({PAD},{y})"><g class="fade" style="animation-delay:{200 + i * 150}ms">'
+                  f'<text class="name" x="0" y="0">{esc(k)}</text>'
+                  f'<text class="pct" x="{BW}" y="0" text-anchor="end" fill="{c}">{p:.1f}%</text>'
+                  f'<rect x="0" y="14" width="{BW}" height="8" rx="4" fill="#ffffff" fill-opacity=".08"/>'
+                  f'<rect class="bar" x="0" y="14" width="{bar_w(p):.2f}" height="8" rx="4" fill="url(#g{i})" style="animation-delay:{350 + i * 150}ms"/>'
+                  f'</g></g>'
+              )
+          bottom = y0 + (len(head) - 1) * 60 + 22
+
+          # remaining languages: compact rows
+          if rest:
+              yd = bottom + 22
+              body.append(f'<line x1="{PAD}" x2="{W - PAD}" y1="{yd}" y2="{yd}" stroke="#ffffff" stroke-opacity=".1"/>')
+              body.append(f'<text class="label fade" style="animation-delay:700ms" x="{PAD}" y="{yd + 22}">ALSO IN THE STACK</text>')
+              y1 = yd + 50
+              for j, (k, p) in enumerate(rest):
+                  c, y = col(k), y1 + j * 38
+                  body.append(
+                      f'<g transform="translate({PAD},{y})"><g class="fade" style="animation-delay:{750 + j * 120}ms">'
+                      f'<circle cx="5" cy="-4" r="4" fill="{c}"/>'
+                      f'<text class="name2" x="18" y="0">{esc(k)}</text>'
+                      f'<text class="pct2" x="{BW}" y="0" text-anchor="end">{p:.1f}%</text>'
+                      f'<rect x="0" y="10" width="{BW}" height="4" rx="2" fill="#ffffff" fill-opacity=".08"/>'
+                      f'<rect class="bar" x="0" y="10" width="{bar_w(p):.2f}" height="4" rx="2" fill="{c}" fill-opacity=".85" style="animation-delay:{850 + j * 120}ms"/>'
+                      f'</g></g>'
+                  )
+              bottom = y1 + (len(rest) - 1) * 38 + 14
+
+          H = bottom + 30
+          accent = "".join(
+              f'<stop offset="{i / max(len(head) - 1, 1):.2f}" stop-color="{col(k)}"/>' for i, (k, _) in enumerate(head)
+          )
+          defs.append(f'<linearGradient id="acc" x1="0" x2="1" y1="0" y2="0">{accent}</linearGradient>')
+          defs.append(f'<clipPath id="ov"><rect width="{BW}" height="8" rx="4"/></clipPath>')
+          defs.append(f'<clipPath id="card"><rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="10"/></clipPath>')
+
+          STYLE = """
+          text { font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif; }
+          .title { font-size: 18px; font-weight: 600; fill: #61dafb; }
+          .sub { font-size: 11px; fill: #8b949e; }
+                    .name { font-size: 16px; font-weight: 600; fill: #f0f6fc; }
+          .pct { font-size: 20px; font-weight: 700; }
+          .label { font-size: 10px; font-weight: 600; fill: #6e7681; letter-spacing: 1.5px; }
+          .name2 { font-size: 12px; fill: #c9d1d9; }
+          .pct2 { font-size: 12px; font-weight: 600; fill: #8b949e; }
+          .fade { animation: fade .45s ease-out backwards; }
+          .bar { transform-box: fill-box; transform-origin: left center; animation: grow .9s cubic-bezier(.2,.8,.2,1) backwards; }
+          @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+          @keyframes grow { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+          """
+
+          svg = (
+              f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most used languages">'
+              f'<title>Most Used Languages</title><style>{STYLE}</style><defs>{"".join(defs)}</defs>'
+              f'<rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="10" fill="{BG}" stroke="#30363d"/>'
+              f'<rect x="0" y="0" width="{W}" height="3" fill="url(#acc)" clip-path="url(#card)"/>'
+              f'<text class="title fade" x="{PAD}" y="42">Most Used Languages</text>'
+              f'<text class="sub fade" x="{PAD}" y="60">Share of code by bytes · {len(repos)} repositories</text>'
+              f'{"".join(body)}</svg>'
+          )
           open(OUT, "w").write(svg + "\n")
           print(f"{len(repos)} repos -> " + ", ".join(f"{k} {p:.1f}%" for k, p in top))
           PY
@@ -146,6 +216,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$OUT"
-          git diff --cached --quiet && exit 0
+          git diff --cached --quiet && { echo "No changes to commit"; git status --short; exit 0; }
           git commit -m "Update top languages card"
           git push
