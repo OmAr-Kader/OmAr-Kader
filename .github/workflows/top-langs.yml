@@ -54,7 +54,7 @@ jobs:
               with urllib.request.urlopen(req) as r:
                   return json.load(r)
 
-          # 1) repos (public repos of the owner; the token can't see more than that)
+          # 1) repos
           repos, page = [], 1
           while True:
               url = "/user/repos?affiliation=owner&visibility=all" if HAS_PAT else f"/users/{OWNER}/repos?type=owner"
@@ -67,6 +67,11 @@ jobs:
               r for r in repos
               if (FORKS or not r["fork"]) and r["name"].lower() not in EX_REPOS
           ]
+
+          mode = "LANGS_TOKEN (PAT)" if HAS_PAT else "GITHUB_TOKEN (public repos only)"
+          print(f"token: {mode}; repos counted: {len(repos)} ({sum(bool(r.get('private')) for r in repos)} private)")
+          if not HAS_PAT:
+              print("::warning::LANGS_TOKEN secret not found in this repo, private repos are NOT counted")
 
           # 2) language bytes per repo
           def langs(r):
@@ -146,6 +151,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$OUT"
-          git diff --cached --quiet && exit 0
+          git diff --cached --quiet && { echo "No changes to commit"; git status --short; exit 0; }
           git commit -m "Update top languages card"
           git push
