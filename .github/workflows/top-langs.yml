@@ -21,10 +21,10 @@ jobs:
       INCLUDE_FORKS: "false"
       EXCLUDE_REPOS: "" # comma-separated repo names
       EXCLUDE_LANGS: "" # comma-separated, e.g. "HTML,CSS"
-      OUT: profile/top-langs.svg
+      OUT: profile/top-langs-custom.svg
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Generate top languages card
         run: |
