@@ -14,7 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.LANGS_TOKEN || secrets.GITHUB_TOKEN }}
+      HAS_PAT: ${{ secrets.LANGS_TOKEN != '' }}
       OWNER: ${{ github.repository_owner }}
       LANGS_COUNT: "6"
       INCLUDE_FORKS: "false"
@@ -39,6 +40,7 @@ jobs:
           EX_REPOS = {x.strip().lower() for x in os.environ["EXCLUDE_REPOS"].split(",") if x.strip()}
           EX_LANGS = {x.strip().lower() for x in os.environ["EXCLUDE_LANGS"].split(",") if x.strip()}
           OUT = os.environ["OUT"]
+          HAS_PAT = os.environ["HAS_PAT"] == "true"
 
           def api(path):
               req = urllib.request.Request(
@@ -55,7 +57,8 @@ jobs:
           # 1) repos (public repos of the owner; the token can't see more than that)
           repos, page = [], 1
           while True:
-              batch = api(f"/users/{OWNER}/repos?type=owner&per_page=100&page={page}")
+              url = "/user/repos?affiliation=owner&visibility=all" if HAS_PAT else f"/users/{OWNER}/repos?type=owner"
+              batch = api(f"{url}&per_page=100&page={page}")
               if not batch:
                   break
               repos += batch
