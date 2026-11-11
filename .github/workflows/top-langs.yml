@@ -17,15 +17,15 @@ jobs:
       GH_TOKEN: ${{ secrets.LANGS_TOKEN || secrets.GITHUB_TOKEN }}
       HAS_PAT: ${{ secrets.LANGS_TOKEN != '' }}
       OWNER: ${{ github.repository_owner }}
-      TOP_LANGUAGE: "3" # big highlighted rows
-      ALL_LANGUAGE: "3" # total rows shown; if equal to TOP_LANGUAGE, no second section
+      TOP_LANGUAGE: "4" # big highlighted rows
+      ALL_LANGUAGE: "4" # total rows shown; if equal to TOP_LANGUAGE, no second section
       ALL_LANGUAGE_CHART: "6" # languages in the stacked strip under the header, 0 = hide strip
       BG_COLOR: "#20232a"
       INCLUDE_FORKS: "false"
       EXCLUDE_REPOS: "" # comma-separated repo names
       EXCLUDE_LANGS: "" # comma-separated, e.g. "HTML,CSS"
       AFFILIATION: "owner" # add ",organization_member,collaborator" to count org / shared repos
-      OUT: profile/top-langs-custom.svg
+      OUT: profile/top-langs.svg
 
     steps:
       - uses: actions/checkout@v6
