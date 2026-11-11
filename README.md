@@ -28,7 +28,6 @@ ___
  <a href="https://rust-lang.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/rust/fc5e03" alt="rust" width="40" height="40"/> </a>
  <a href="https://nodejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/> </a>
  <a href="https://nestjs.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/nestjs/E0234E" alt="nestjs" width="40" height="40"/> </a>
- <a href="https://www.npmjs.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/npmjs/npmjs-tile.svg" alt="npm" width="40" height="40"/> </a>
  <a href="https://expressjs.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" alt="expressjs" width="40" height="40"/> </a>
  <a href="https://www.fastify.io/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/fastify/000000" alt="fastify" width="40" height="40"/> </a>
  <a href="https://vitejs.dev/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vitejs/vitejs-original.svg" alt="vite" width="40" height="40"/> </a>
@@ -43,7 +42,8 @@ ___
  <a href="https://www.rabbitmq.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/rabbitmq/FF6600" alt="rabbitmq" width="40" height="40"/> </a>
  <a href="https://github.com/modelcontextprotocol" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/modelcontextprotocol/691F69" alt="modelcontextprotocol" width="40" height="40"/> </a>
  <a href="https://docs.stripe.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="stripe" width="40" height="40"/> </a>
- <a href="https://redis.io/docs/latest/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="redis" width="40" height="40"/> </a> 
+ <a href="https://redis.io/docs/latest/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="redis" width="40" height="40"/> </a>
+ <a href="https://docs.harperdb.io/" target="_blank" rel="noreferrer"> <img src="https://github.com/user-attachments/assets/68c876d0-3ff6-4ae2-b9a9-8783651fa0e6" alt="harperdb" width="40" height="40"/> </a>
  <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="mongodb" width="40" height="40"/> </a>
  <a href="https://realm.io/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/bestofjs/bestofjs-webui/8665e8c267a0215f3159df28b33c365198101df5/public/logos/realm.svg" alt="realm" width="40" height="40"/> </a>
  <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="40" height="40"/> </a>
