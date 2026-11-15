@@ -20,7 +20,7 @@ jobs:
       HAS_PAT: ${{ secrets.LANGS_TOKEN != '' }}
       OWNER: ${{ github.repository_owner }}
       BG_COLOR: "#20232a"
-      OUT: profile/streak-customized.svg
+      OUT: profile/streak.svg
 
     steps:
       - uses: actions/checkout@v6
