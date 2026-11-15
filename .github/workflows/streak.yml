@@ -1,0 +1,169 @@
+name: Update streak card
+
+on:
+  schedule:
+    - cron: "15 0 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: streak
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.LANGS_TOKEN || secrets.GITHUB_TOKEN }}
+      HAS_PAT: ${{ secrets.LANGS_TOKEN != '' }}
+      OWNER: ${{ github.repository_owner }}
+      BG_COLOR: "#20232a"
+      OUT: profile/streak.svg
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate card
+        run: |
+          mkdir -p "$(dirname "$OUT")"
+          python3 - <<'PY'
+          import json, os, html, urllib.request, datetime as dt
+
+          TOKEN = os.environ["GH_TOKEN"]
+          OWNER = os.environ["OWNER"]
+          BG = os.environ["BG_COLOR"].strip() or "#20232a"
+          OUT = os.environ["OUT"]
+          HAS_PAT = os.environ["HAS_PAT"] == "true"
+          esc = html.escape
+          NOW = dt.datetime.now(dt.timezone.utc)
+          ACCENT = ["#F05138", "#A97BFF", "#dea584", "#3178c6"]  # Swift, Kotlin, Rust, TypeScript
+
+          def gql(query):
+              req = urllib.request.Request(
+                  "https://api.github.com/graphql",
+                  data=json.dumps({"query": query}).encode(),
+                  headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"},
+              )
+              with urllib.request.urlopen(req) as r:
+                  d = json.load(r)
+              if d.get("errors"):
+                  raise SystemExit("GraphQL error: " + "; ".join(e.get("message", "?") for e in d["errors"]))
+              return d["data"]
+
+          if not HAS_PAT:
+              print("::warning::LANGS_TOKEN secret not found in this repo, private data is NOT counted")
+
+          def years(created):
+              """(alias, from, to) windows of at most one year, from account creation to now."""
+              c = dt.datetime.fromisoformat(created.replace("Z", "+00:00"))
+              for y in range(c.year, NOW.year + 1):
+                  a = c if y == c.year else dt.datetime(y, 1, 1, tzinfo=dt.timezone.utc)
+                  b = NOW if y == NOW.year else dt.datetime(y, 12, 31, 23, 59, 59, tzinfo=dt.timezone.utc)
+                  yield f"y{y}", a.strftime("%Y-%m-%dT%H:%M:%SZ"), b.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+          def accent_defs(w, h):
+              stops = "".join(f'<stop offset="{i / (len(ACCENT) - 1):.2f}" stop-color="{c}"/>' for i, c in enumerate(ACCENT))
+              return (
+                  f'<linearGradient id="acc" x1="0" x2="1" y1="0" y2="0">{stops}</linearGradient>'
+                  f'<clipPath id="card"><rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="10"/></clipPath>'
+              )
+
+          def frame(w, h, style, defs, body, label):
+              return (
+                  f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{esc(label)}">'
+                  f'<title>{esc(label)}</title><style>{style}</style><defs>{accent_defs(w, h)}{defs}</defs>'
+                  f'<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="10" fill="{BG}" stroke="#30363d"/>'
+                  f'<rect x="0" y="0" width="{w}" height="3" fill="url(#acc)" clip-path="url(#card)"/>'
+                  f'{body}</svg>'
+              )
+
+          W, H = 495, 195
+          ORANGE = "#ff9f1c"
+
+          u = gql('query { user(login: "%s") { createdAt %s } }' % (OWNER, "".join(
+              f'{a}: contributionsCollection(from: "{f}", to: "{t}") {{ contributionCalendar {{ weeks {{ contributionDays {{ date contributionCount }} }} }} }} '
+              for a, f, t in years(gql('query { user(login: "%s") { createdAt } }' % OWNER)["user"]["createdAt"])
+          )))["user"]
+
+          today = NOW.date()
+          days = {}
+          for k, v in u.items():
+              if k.startswith("y"):
+                  for w in v["contributionCalendar"]["weeks"]:
+                      for d in w["contributionDays"]:
+                          day = dt.date.fromisoformat(d["date"])
+                          if day <= today:
+                              days[day] = max(days.get(day, 0), d["contributionCount"])
+
+          total = sum(days.values())
+          runs, start, n = [], None, 0
+          for day in sorted(days):
+              if days[day] > 0:
+                  if n == 0:
+                      start = day
+                  n += 1
+                  last = day
+              elif n:
+                  runs.append((n, start, last)); n = 0
+          if n:
+              runs.append((n, start, last))
+
+          longest = max(runs, key=lambda r: (r[0], r[2]), default=(0, None, None))
+          cur = runs[-1] if runs and (today - runs[-1][2]).days <= 1 else (0, None, None)  # today still empty doesn't break it
+
+          def fmt(d, year):
+              return f"{d.strftime('%b')} {d.day}" + (f", {d.year}" if year else "")
+
+          def rng(r):
+              if not r[0]:
+                  return "No streak yet"
+              return f"{fmt(r[1], True)} - {fmt(r[2], r[2].year != r[1].year)}"
+
+          created = dt.date.fromisoformat(u["createdAt"][:10])
+          FIRE = "M 1.5 0.67 C 1.5 0.67 2.24 3.32 2.24 5.47 C 2.24 7.53 0.89 9.2 -1.17 9.2 C -3.23 9.2 -4.79 7.53 -4.79 5.47 L -4.76 5.11 C -6.78 7.51 -8 10.62 -8 13.99 C -8 18.41 -4.42 22 0 22 C 4.42 22 8 18.41 8 13.99 C 8 8.6 5.41 3.79 1.5 0.67 Z M -0.29 19 C -2.07 19 -3.51 17.6 -3.51 15.86 C -3.51 14.24 -2.46 13.1 -0.7 12.74 C 1.07 12.38 2.9 11.53 3.92 10.16 C 4.31 11.45 4.51 12.81 4.51 14.2 C 4.51 16.85 2.36 19 -0.29 19 Z"
+
+          defs = (
+              '<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>'
+              '<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+              f'<mask id="m"><rect width="{W}" height="{H}" fill="white"/><ellipse cx="247.5" cy="36" rx="13" ry="18" fill="black"/></mask>'
+          )
+          body = (
+              '<line x1="171" y1="38" x2="171" y2="168" class="divider"/><line x1="324" y1="38" x2="324" y2="168" class="divider"/>'
+              f'<g class="fade"><text x="95" y="88" class="stat">{total:,}</text><text x="95" y="118" class="label">Total Contributions</text>'
+              f'<text x="95" y="146" class="range">{fmt(created, True)} - Present</text></g>'
+              f'<g mask="url(#m)"><circle cx="247.5" cy="82" r="40" stroke-width="5" class="ring" fill="none"/></g>'
+              f'<g transform="translate(247.5, 26)" class="fade" style="animation-delay:600ms"><path d="{FIRE}" fill="{ORANGE}" filter="url(#glow)"/></g>'
+              f'<text x="247.5" y="87" class="circle-label">{cur[0]}</text>'
+              f'<text x="247.5" y="146" class="label" style="fill:{ORANGE}">Current Streak</text>'
+              f'<text x="247.5" y="170" class="range">{rng(cur)}</text>'
+              f'<g class="fade" style="animation-delay:200ms"><text x="400" y="88" class="stat">{longest[0]}</text><text x="400" y="118" class="label">Longest Streak</text>'
+              f'<text x="400" y="146" class="range">{rng(longest)}</text></g>'
+          )
+          STYLE = f"""
+          text {{ font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif; text-anchor: middle; }}
+          .stat {{ font-size: 28px; font-weight: 700; fill: #f0f6fc; }}
+          .label {{ font-size: 14px; font-weight: 600; fill: #c9d1d9; }}
+          .range {{ font-size: 11px; fill: #8b949e; }}
+          .circle-label {{ font-size: 28px; font-weight: 700; fill: {ORANGE}; dominant-baseline: middle; filter: url(#glow); }}
+          .ring {{ stroke: {ORANGE}; filter: url(#glow); animation: pulse 2s infinite; }}
+          .divider {{ stroke: #ffffff; stroke-opacity: .1; }}
+          .fade {{ animation: fade .45s ease-out backwards; }}
+          @keyframes fade {{ from {{ opacity: 0 }} to {{ opacity: 1 }} }}
+          @keyframes pulse {{ 0%,100% {{ opacity: .6 }} 50% {{ opacity: 1 }} }}
+          """
+          svg = frame(W, H, STYLE, defs, body, f"GitHub streak: current {cur[0]}, longest {longest[0]}, {total} contributions")
+          open(OUT, "w").write(svg + "\n")
+          print(f"total {total}, current {cur[0]}, longest {longest[0]}")
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT"
+          git diff --cached --quiet && { echo "No changes to commit"; git status --short; exit 0; }
+          git commit -m "Update streak card"
+          git pull --rebase
+          git push

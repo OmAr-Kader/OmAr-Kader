@@ -1,0 +1,201 @@
+name: Update stats card
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: stats
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.LANGS_TOKEN || secrets.GITHUB_TOKEN }}
+      HAS_PAT: ${{ secrets.LANGS_TOKEN != '' }}
+      OWNER: ${{ github.repository_owner }}
+      BG_COLOR: "#20232a"
+      OUT: profile/stats.svg
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate card
+        run: |
+          mkdir -p "$(dirname "$OUT")"
+          python3 - <<'PY'
+          import json, os, html, urllib.request, datetime as dt
+
+          TOKEN = os.environ["GH_TOKEN"]
+          OWNER = os.environ["OWNER"]
+          BG = os.environ["BG_COLOR"].strip() or "#20232a"
+          OUT = os.environ["OUT"]
+          HAS_PAT = os.environ["HAS_PAT"] == "true"
+          esc = html.escape
+          NOW = dt.datetime.now(dt.timezone.utc)
+          ACCENT = ["#F05138", "#A97BFF", "#dea584", "#3178c6"]  # Swift, Kotlin, Rust, TypeScript
+
+          def gql(query):
+              req = urllib.request.Request(
+                  "https://api.github.com/graphql",
+                  data=json.dumps({"query": query}).encode(),
+                  headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"},
+              )
+              with urllib.request.urlopen(req) as r:
+                  d = json.load(r)
+              if d.get("errors"):
+                  raise SystemExit("GraphQL error: " + "; ".join(e.get("message", "?") for e in d["errors"]))
+              return d["data"]
+
+          if not HAS_PAT:
+              print("::warning::LANGS_TOKEN secret not found in this repo, private data is NOT counted")
+
+          def years(created):
+              """(alias, from, to) windows of at most one year, from account creation to now."""
+              c = dt.datetime.fromisoformat(created.replace("Z", "+00:00"))
+              for y in range(c.year, NOW.year + 1):
+                  a = c if y == c.year else dt.datetime(y, 1, 1, tzinfo=dt.timezone.utc)
+                  b = NOW if y == NOW.year else dt.datetime(y, 12, 31, 23, 59, 59, tzinfo=dt.timezone.utc)
+                  yield f"y{y}", a.strftime("%Y-%m-%dT%H:%M:%SZ"), b.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+          def accent_defs(w, h):
+              stops = "".join(f'<stop offset="{i / (len(ACCENT) - 1):.2f}" stop-color="{c}"/>' for i, c in enumerate(ACCENT))
+              return (
+                  f'<linearGradient id="acc" x1="0" x2="1" y1="0" y2="0">{stops}</linearGradient>'
+                  f'<clipPath id="card"><rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="10"/></clipPath>'
+              )
+
+          def frame(w, h, style, defs, body, label):
+              return (
+                  f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{esc(label)}">'
+                  f'<title>{esc(label)}</title><style>{style}</style><defs>{accent_defs(w, h)}{defs}</defs>'
+                  f'<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="10" fill="{BG}" stroke="#30363d"/>'
+                  f'<rect x="0" y="0" width="{w}" height="3" fill="url(#acc)" clip-path="url(#card)"/>'
+                  f'{body}</svg>'
+              )
+
+          W, H, PAD = 467, 195, 28
+
+          # 1) profile + lifetime totals
+          u = gql(
+              'query { user(login: "%s") { name login createdAt followers { totalCount }'
+              ' pullRequests { totalCount } merged: pullRequests(states: MERGED) { totalCount }'
+              ' issues { totalCount }'
+              ' repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) { totalCount } } }' % OWNER
+          )["user"]
+
+          # 2) stars across owned repos (private included with PAT)
+          stars, repos, after = 0, 0, None
+          while True:
+              arg = f', after: "{after}"' if after else ""
+              r = gql(
+                  'query { user(login: "%s") { repositories(ownerAffiliations: OWNER, isFork: false, first: 100%s) {'
+                  ' nodes { stargazerCount isPrivate } pageInfo { hasNextPage endCursor } } } }' % (OWNER, arg)
+              )["user"]["repositories"]
+              stars += sum(n["stargazerCount"] for n in r["nodes"])
+              repos += len(r["nodes"])
+              if not r["pageInfo"]["hasNextPage"]:
+                  break
+              after = r["pageInfo"]["endCursor"]
+
+          # 3) commits + reviews, one window per year (private commits come as restrictedContributionsCount)
+          q = "".join(
+              f'{a}: contributionsCollection(from: "{f}", to: "{t}") {{ totalCommitContributions restrictedContributionsCount totalPullRequestReviewContributions }} '
+              for a, f, t in years(u["createdAt"])
+          )
+          cc = gql('query { user(login: "%s") { %s } }' % (OWNER, q))["user"]
+          commits = sum(v["totalCommitContributions"] + v["restrictedContributionsCount"] for v in cc.values())
+          reviews = sum(v["totalPullRequestReviewContributions"] for v in cc.values())
+
+          prs, issues = u["pullRequests"]["totalCount"], u["issues"]["totalCount"]
+          contrib, followers = u["repositoriesContributedTo"]["totalCount"], u["followers"]["totalCount"]
+
+          # 4) rank: same idea as github-readme-stats (weighted CDFs), approximated
+          exp_cdf = lambda x: 1 - 2 ** -x
+          log_cdf = lambda x: x / (1 + x)
+          parts = [
+              (2, exp_cdf(commits / 1000)), (3, exp_cdf(prs / 50)), (1, exp_cdf(issues / 25)),
+              (1, exp_cdf(reviews / 2)), (4, log_cdf(stars / 50)), (1, log_cdf(followers / 10)),
+          ]
+          pct = (1 - sum(w * v for w, v in parts) / sum(w for w, _ in parts)) * 100
+          TH = [1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100]
+          LV = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"]
+          level = LV[next(i for i, t in enumerate(TH) if pct <= t)]
+
+          def short(n):
+              return f"{n / 1000:.1f}k" if n >= 1000 else str(n)
+
+          ICON = {
+              "star": "M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z",
+              "commit": "M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z",
+              "pr": "M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z",
+              "issue": "M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z",
+              "repo": "M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z",
+          }
+          rows = [
+              ("Total Stars Earned", stars, "star"), ("Total Commits", commits, "commit"),
+              ("Total PRs", prs, "pr"), ("Total Issues", issues, "issue"), ("Contributed to", contrib, "repo"),
+          ]
+          body = []
+          for i, (label, val, ic) in enumerate(rows):
+              y = 86 + i * 22
+              body.append(
+                  f'<g class="fade" style="animation-delay:{200 + i * 120}ms">'
+                  f'<svg class="icon" x="{PAD}" y="{y - 13}" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="{ICON[ic]}"/></svg>'
+                  f'<text class="name" x="{PAD + 26}" y="{y}">{label}</text>'
+                  f'<text class="val" x="290" y="{y}" text-anchor="end">{short(val)}</text></g>'
+              )
+
+          CX, CY, R = 385, 112, 40
+          C = 2 * 3.141592653589793 * R
+          off = pct / 100 * C
+          body.append(
+              f'<g class="fade" style="animation-delay:300ms">'
+              f'<circle cx="{CX}" cy="{CY}" r="{R}" stroke="#61dafb" stroke-width="6" stroke-opacity=".15"/>'
+              f'<circle class="ring" cx="{CX}" cy="{CY}" r="{R}" stroke="url(#acc)" stroke-width="6" stroke-linecap="round" '
+              f'stroke-dasharray="{C:.2f}" stroke-dashoffset="{off:.2f}" transform="rotate(-90 {CX} {CY})"/>'
+              f'<text class="rank" x="{CX}" y="{CY}" text-anchor="middle" dominant-baseline="central">{level}</text>'
+              f'<text class="label" x="{CX}" y="{CY + R + 22}" text-anchor="middle">RANK</text></g>'
+          )
+
+          STYLE = """
+          text { font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif; }
+          .title { font-size: 18px; font-weight: 600; fill: #61dafb; }
+          .sub { font-size: 11px; fill: #8b949e; }
+          .name { font-size: 14px; font-weight: 600; fill: #f0f6fc; }
+          .val { font-size: 14px; font-weight: 700; fill: #f0f6fc; }
+          .rank { font-size: 24px; font-weight: 800; fill: #f0f6fc; }
+          .label { font-size: 10px; font-weight: 600; fill: #6e7681; letter-spacing: 1.5px; }
+          .icon { fill: #61dafb; }
+          .fade { animation: fade .45s ease-out backwards; }
+          .ring { animation: ring .9s cubic-bezier(.2,.8,.2,1) backwards; }
+          @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+          @keyframes ring { from { stroke-dashoffset: %.2f } }
+          """ % C
+
+          name = u["name"] or u["login"]
+          sub = f"Lifetime · {repos} repositories" + (" · private included" if HAS_PAT else "")
+          svg = frame(
+              W, H, STYLE, "",
+              f'<text class="title fade" x="{PAD}" y="38">{esc(name)}\u2019s GitHub Stats</text>'
+              f'<text class="sub fade" x="{PAD}" y="56">{esc(sub)}</text>' + "".join(body),
+              f"{name}'s GitHub Stats, Rank: {level}",
+          )
+          open(OUT, "w").write(svg + "\n")
+          print(f"stars {stars}, commits {commits}, prs {prs}, issues {issues}, contrib {contrib}, rank {level} (top {pct:.1f}%)")
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT"
+          git diff --cached --quiet && { echo "No changes to commit"; git status --short; exit 0; }
+          git commit -m "Update stats card"
+          git pull --rebase
+          git push
