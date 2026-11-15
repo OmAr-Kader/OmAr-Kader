@@ -37,6 +37,7 @@ jobs:
           OUT = os.environ["OUT"]
           HAS_PAT = os.environ["HAS_PAT"] == "true"
           esc = html.escape
+          D = 400  # ms: empty card frame shows first, content reveals after this
           NOW = dt.datetime.now(dt.timezone.utc)
           ACCENT = ["#F05138", "#A97BFF", "#dea584", "#3178c6"]  # Swift, Kotlin, Rust, TypeScript
 
@@ -130,15 +131,15 @@ jobs:
               f'<mask id="m"><rect width="{W}" height="{H}" fill="white"/><ellipse cx="247.5" cy="36" rx="13" ry="18" fill="black"/></mask>'
           )
           body = (
-              '<line x1="171" y1="38" x2="171" y2="168" class="divider"/><line x1="324" y1="38" x2="324" y2="168" class="divider"/>'
-              f'<g class="fade"><text x="95" y="88" class="stat">{total:,}</text><text x="95" y="118" class="label">Total Contributions</text>'
+              f'<line x1="171" y1="38" x2="171" y2="168" class="divider fade" style="animation-delay:{D}ms"/><line x1="324" y1="38" x2="324" y2="168" class="divider fade" style="animation-delay:{D}ms"/>'
+              f'<g class="fade" style="animation-delay:{D}ms"><text x="95" y="88" class="stat">{total:,}</text><text x="95" y="118" class="label">Total Contributions</text>'
               f'<text x="95" y="146" class="range">{fmt(created, True)} - Present</text></g>'
-              f'<g mask="url(#m)"><circle cx="247.5" cy="82" r="40" stroke-width="5" class="ring" fill="none"/></g>'
-              f'<g transform="translate(247.5, 26)" class="fade" style="animation-delay:600ms"><path d="{FIRE}" fill="{ORANGE}" filter="url(#glow)"/></g>'
-              f'<text x="247.5" y="87" class="circle-label">{cur[0]}</text>'
-              f'<text x="247.5" y="146" class="label" style="fill:{ORANGE}">Current Streak</text>'
-              f'<text x="247.5" y="170" class="range">{rng(cur)}</text>'
-              f'<g class="fade" style="animation-delay:200ms"><text x="400" y="88" class="stat">{longest[0]}</text><text x="400" y="118" class="label">Longest Streak</text>'
+              f'<g class="fade" style="animation-delay:{D + 300}ms" mask="url(#m)"><circle cx="247.5" cy="82" r="40" stroke-width="5" class="ring" fill="none"/></g>'
+              f'<g transform="translate(247.5, 26)" class="fade" style="animation-delay:{D + 600}ms"><path d="{FIRE}" fill="{ORANGE}" filter="url(#glow)"/></g>'
+              f'<text x="247.5" y="87" class="circle-label fade" style="animation-delay:{D + 400}ms">{cur[0]}</text>'
+              f'<text x="247.5" y="146" class="label fade" style="fill:{ORANGE};animation-delay:{D + 500}ms">Current Streak</text>'
+              f'<text x="247.5" y="170" class="range fade" style="animation-delay:{D + 500}ms">{rng(cur)}</text>'
+              f'<g class="fade" style="animation-delay:{D + 200}ms"><text x="400" y="88" class="stat">{longest[0]}</text><text x="400" y="118" class="label">Longest Streak</text>'
               f'<text x="400" y="146" class="range">{rng(longest)}</text></g>'
           )
           STYLE = f"""

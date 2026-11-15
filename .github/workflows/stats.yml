@@ -37,6 +37,7 @@ jobs:
           OUT = os.environ["OUT"]
           HAS_PAT = os.environ["HAS_PAT"] == "true"
           esc = html.escape
+          D = 400  # ms: empty card frame shows first, content reveals after this
           NOW = dt.datetime.now(dt.timezone.utc)
           ACCENT = ["#F05138", "#A97BFF", "#dea584", "#3178c6"]  # Swift, Kotlin, Rust, TypeScript
 
@@ -145,7 +146,7 @@ jobs:
           for i, (label, val, ic) in enumerate(rows):
               y = 86 + i * 22
               body.append(
-                  f'<g class="fade" style="animation-delay:{200 + i * 120}ms">'
+                  f'<g class="fade" style="animation-delay:{D + 200 + i * 120}ms">'
                   f'<svg class="icon" x="{PAD}" y="{y - 13}" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="{ICON[ic]}"/></svg>'
                   f'<text class="name" x="{PAD + 26}" y="{y}">{label}</text>'
                   f'<text class="val" x="290" y="{y}" text-anchor="end">{short(val)}</text></g>'
@@ -155,7 +156,7 @@ jobs:
           C = 2 * 3.141592653589793 * R
           off = pct / 100 * C
           body.append(
-              f'<g class="fade" style="animation-delay:300ms">'
+              f'<g class="fade" style="animation-delay:{D + 300}ms">'
               f'<circle cx="{CX}" cy="{CY}" r="{R}" stroke="#61dafb" stroke-width="6" stroke-opacity=".15"/>'
               f'<circle class="ring" cx="{CX}" cy="{CY}" r="{R}" stroke="url(#acc)" stroke-width="6" stroke-linecap="round" '
               f'stroke-dasharray="{C:.2f}" stroke-dashoffset="{off:.2f}" transform="rotate(-90 {CX} {CY})"/>'
@@ -173,17 +174,17 @@ jobs:
           .label { font-size: 10px; font-weight: 600; fill: #6e7681; letter-spacing: 1.5px; }
           .icon { fill: #61dafb; }
           .fade { animation: fade .45s ease-out backwards; }
-          .ring { animation: ring .9s cubic-bezier(.2,.8,.2,1) backwards; }
+          .ring { animation: ring .9s cubic-bezier(.2,.8,.2,1) %dms backwards; }
           @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
           @keyframes ring { from { stroke-dashoffset: %.2f } }
-          """ % C
+          """ % (D + 300, C)
 
           name = u["name"] or u["login"]
           sub = f"Lifetime · {repos} repositories" + (" · private included" if HAS_PAT else "")
           svg = frame(
               W, H, STYLE, "",
-              f'<text class="title fade" x="{PAD}" y="38">{esc(name)}\u2019s GitHub Stats</text>'
-              f'<text class="sub fade" x="{PAD}" y="56">{esc(sub)}</text>' + "".join(body),
+              f'<text class="title fade" style="animation-delay:{D}ms" x="{PAD}" y="38">{esc(name)}\u2019s GitHub Stats</text>'
+              f'<text class="sub fade" style="animation-delay:{D + 50}ms" x="{PAD}" y="56">{esc(sub)}</text>' + "".join(body),
               f"{name}'s GitHub Stats, Rank: {level}",
           )
           open(OUT, "w").write(svg + "\n")

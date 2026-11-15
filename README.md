@@ -64,10 +64,14 @@ ___
 <table>
   <tr>
     <td align="center">
-      <img src="/profile/stats.svg">
+      <a href="https://github-readme-stats-fast.vercel.app/">
+        <img src="profile/stats-customized.svg" alt="Based on GitHub Readme Stats">
+      </a>
     </td>
     <td align="center">
-      <img src="https://github-readme-stats-fast.vercel.app/api/streak?username=OmAr-Kader&theme=react&count_private=true">
+      <a href="https://github-readme-stats-fast.vercel.app/">
+        <img src="profile/streak-customized.svg" alt="Based on GitHub Readme Stats">
+      </a>
     </td>
   </tr>
 </table>
