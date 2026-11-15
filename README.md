@@ -65,12 +65,12 @@ ___
   <tr>
     <td align="center">
       <a href="https://github-readme-stats-fast.vercel.app/">
-        <img src="profile/stats-customized.svg" alt="Based on GitHub Readme Stats">
+        <img src="profile/stats.svg" alt="Based on GitHub Readme Stats">
       </a>
     </td>
     <td align="center">
       <a href="https://github-readme-stats-fast.vercel.app/">
-        <img src="profile/streak-customized.svg" alt="Based on GitHub Readme Stats">
+        <img src="profile/streak.svg" alt="Based on GitHub Readme Stats">
       </a>
     </td>
   </tr>
